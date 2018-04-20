@@ -1,0 +1,56 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <div class="row clearfix animated fadeIn pulse">
+
+    <% if post.errors.any? %>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel">
+          <div class="panel-default" id="error_explanation">
+            <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+              <ul>
+            <% post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+
+        <div class="panel-heading" id="post-head">
+          <div class="nav" >
+            <div class="navbar-left" id="post-user-image">
+              <%= image_tag post.user.image.url, width: 50, height: 50, class: "img-circle" unless post.user.nil? %>&nbsp&nbsp
+            </div>
+            <div class="navbar-left" id="post-info">
+              <%= link_to user_profile_path(post.user) do %>
+                <p class="text-success btn" id="post-name"><%= post.user.name %></p>
+              <% end %>
+              <p class="text-default" id="post-time"><%= post.created_at %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="form-group">
+            <div class="field" id="edit-body">
+              <%= form.text_area :body, id: "edit-text", class: "form-control", required: true %>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <div class="btn btn-group">
+            <div class="actions">
+              <%= form.submit class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+<% end %>

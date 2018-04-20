@@ -1,0 +1,76 @@
+  <div class="panel panel-default" id="post">
+    <div class="panel-heading" id="post-head">
+      <div class="nav navbar">
+        <div class="navbar-left" id="post-user-image">
+          <%= image_tag post.user.image.url, width: 50, height: 50, class: "img-circle"  unless post.user.nil? %>&nbsp&nbsp
+        </div>
+        <div class="navbar-left" id="post-info">
+          <%= link_to user_profile_path(post.user) do %>
+            <p class="text-success btn" id="post-name"><%= post.user.name %></p>
+          <% end %>
+          <% if post.public? %>
+            <p class="text-default" id="post-time"><i class="fa fa-globe"> Published at <%= post.created_at %></i></p>
+          <% else %>
+            <p class="text-default" id="post-time"><i class="fa fa-user-circle-o"> Published at <%= post.created_at %></i></p>
+          <% end %>
+        </div>
+        <% if post.user == current_user %>
+          <div class="navbar-right" id="post-options">
+            <div class="btn-group">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" id="post-option-menu">
+                <li><%= link_to 'Modify', edit_post_path(post) %></li>
+                <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <p id="post-body"><%= post.body %></p>
+    </div>
+    <% if user_signed_in? %>
+      <div class="panel-footer">
+        <div class="btn-group">
+          <button type="button" class="btn btn-info">
+            <%= link_to 'Like', like_post_path(post), method: :patch %>
+          </button>
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
+            Comment
+          </button>
+          <ul class="dropdown-menu" id="comment-menu">
+
+              <div class="nav navbar-nav navbar-default">
+                <div class="navbar-header">
+                  <div class="navbar-brand">
+                    <%= image_tag current_user.image.url, width: 20, height: 20, class: "img-circle"  unless current_user.nil? %>
+                  </div>
+                </div>
+
+                <%= form_with url: post_comments_path(post), method: :post, class: "navbar-form navbar-left" do |f| %>
+                  <div class="form-group">
+                    <%= f.text_field :content, placeholder: "Add Comment", class: "form-control", required: true, id: "comment-field" %>
+                  </div>
+                  <%= f.submit "Enter", class: "btn btn-default" %>
+                <% end %>
+
+              </div>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <div class="panel-heading" id="reaction-options">
+      <div class="heart">
+        <i class="fa fa-heart"></i>
+        <%= post.cached_votes_total %>
+      </div>
+    </div>
+    <div class="panel-body" >
+      <% @comments = post.comments.includes(:user) %>
+      <%= render @comments || "comments/comment" %>
+    </div>
+  </div>

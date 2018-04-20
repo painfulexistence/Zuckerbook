@@ -1,0 +1,47 @@
+<div class="panel-body" id="profile-body">
+  <p>Name: <%= @user.name %></p>
+  <p>Birthday: <%= @user.birthday %></p>
+  <p>Email: <%= @user.email %></p>
+</div>
+
+<div class="panel-footer">
+
+  <% @friendships = current_user.friendships.where(friend_id: @user) %>
+  <% if @friendships.present? %>
+    <% @friendship = @friendships.last %>
+    <% if @friendship.confirmed? %>
+      <div class="text-success">
+        <i class="fa fa-child"> Hello My Friend</i>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="btn-group">
+    <% if @friendship.present? %>
+      <% if @friendship.confirmed? %>
+        <%= link_to friendship_path(@friendship), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" do %>
+          <i class="fa fa-meh-o"> Unfriend</i>
+        <% end %>
+      <% else %>
+        <div class="btn btn-info">
+          <i class="fa fa-spinner"> Request Sent</i>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to friendships_path(friend_id: @user), method: :post, class: "btn btn-info" do %>
+        <i class="fa fa-smile-o"> Make Friend</i>
+      <% end %>
+    <% end %>
+
+    <% if current_user.following?(@user) %>
+      <%= link_to "/users/#{@user.id}/unsubscribe", method: :patch, class: "btn btn-info" do %>
+        <i class="fa fa-eye">Unsubscribe</i>
+      <% end %>
+    <% else %>
+      <%= link_to "/users/#{@user.id}/subscribe", method: :patch, class: "btn btn-info" do %>
+        <i class="fa fa-eye">Subscribe</i>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

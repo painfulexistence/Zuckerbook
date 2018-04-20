@@ -1,0 +1,101 @@
+<div class="col-md-8 col-md-offset-2">
+  <% @users.each do |user| %>
+    <div class="panel panel-default animated fadeIn">
+
+      <div class="panel-heading" id="manager-heading">
+        <div class="nav">
+          <div class="navbar-left">
+            <%= image_tag user.image.url, width: 30, height: 30, class: "img-circle", id: "manager-img" unless user.nil? %>&nbsp&nbsp
+          </div>
+          <div class="navbar-left" id="manager-name">
+            <%=  link_to user_profile_path(user) do %>
+              <p><%= user.name %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <span class="label label-success">Personal Info</span>
+        <div id="manager-body">
+          <ul class="text-success list-group">
+            <li><strong>Name:&nbsp</strong><%= user.name %></li>
+            <li><strong>Email:&nbsp</strong><%= user.email %></li>
+            <li><strong>Birthday:&nbsp</strong><%= user.birthday %></li>
+            <li><strong>Description&nbsp</strong><%# user.description %></li>
+            <li><strong>Friendship&nbsp</strong><%# user.description %></li>
+          </ul>
+        </div>
+
+        <% if user.has_role?(:Zucker, user) %>
+          <% role = "Zucker" %>
+        <% elsif user.has_role?(:admin, user) %>
+          <% role = "admin" %>
+        <% elsif user.has_role?(:newbie, user) %>
+          <% role = "newbie" %>
+        <% else %>
+          <% role = "unknown" %>
+        <% end %>
+
+        <span class="label label-primary">Status</span>
+        <div id="manager-body">
+          <ul class="text-primary list-group" id="manager-links" >
+            <li>Role?&nbsp&nbsp<span id="links-label"><%= role %></span></li>
+            <li>Can/Cannot?</li>
+            <li><%= link_to "Recent Activity?", "/users/#{user.id}/activities", id: "manager-link" %></li>
+          </ul>
+        </div>
+
+        <span class="label label-default">Login File</span>
+        <div id="manager-body">
+          <ul class="text-default list-group">
+            <li><strong>Login times?&nbsp</strong><%= user.sign_in_count %></li>
+            <% if user_signed_in? %>
+              <li><strong>Current login at?&nbsp</strong><%= user.current_sign_in_at %></li>
+              <li><strong>Current login on?&nbsp</strong><%= user.current_sign_in_ip %></li>
+            <% end %>
+            <li><strong>Last login at?&nbsp</strong><%= user.last_sign_in_at %></li>
+            <li><strong>Last login on?&nbsp</strong><%= user.last_sign_in_ip %></li>
+            <li><strong>Created at?&nbsp</strong><%= user.created_at %></li>
+            <li><strong>Updated at?&nbsp</strong><%= user.updated_at %></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel-footer" id="manager-footer">
+        <div class="btn-group">
+
+          <%# link_to "View Friendship", "#", class: "btn btn-info" %>
+
+          <button type="button" class="btn btn-danger">
+            <%= link_to "BAN", "/users/#{user.id}/ban", method: :patch %>
+          </button>
+          <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
+            Send Warning
+          </button>
+          <ul class="dropdown-menu" id="warning-message">
+              <div class="nav navbar-nav navbar-default">
+                <div class="navbar-header">
+                  <div class="navbar-brand">
+                    <%= image_tag current_user.image.url, width: 20, height: 20, class: "img-circle"  unless current_user.nil? %>
+                  </div>
+                </div>
+                <%= form_with url: "/users/#{user.id}/warn", method: :patch, class: "navbar-form navbar-left" do |f| %>
+                  <div class="form-group">
+                    <%= f.text_field :content, placeholder: "Write down warning messages...", class: "form-control", required: true %>
+                  </div>
+                  <%= f.submit "Enter", class: "btn btn-default" %>
+                <% end %>
+              </div>
+          </ul>
+
+
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+    </div>
+  <% end %>
+</div>

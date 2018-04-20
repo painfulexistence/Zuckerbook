@@ -1,0 +1,29 @@
+<div class="row clearfix">
+  <% if notice.present? %>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default animated fadeIn" id="notice-box">
+        <p id="notice"><%= notice %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-md-8 col-md-offset-2 animated fadeIn" id="posts-all">
+    <% if @posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <div class="jumbotron">
+        <h1>Sorry, no results found!</h1>
+        <h2>Maybe try other keywords?</h2>
+        <br>
+        <span class="label label-warning"><%= link_to "Back", posts_path %></span>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<div class="row" id="page-bar">
+  <div class="col-md-4 col-md-offset-4">
+    <%# will_paginate @posts %>
+  </div>
+</div>

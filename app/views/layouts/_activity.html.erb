@@ -1,0 +1,45 @@
+<% if activity.owner.present? && activity.recipient.present? %>
+
+  <% translates = {"post.create" => "recently posts this", "post.update" => "updated this post", "post.destroy" => "deleted this post", "post.like" => "liked this post", \
+                  "comment.create" => "commented on a post", "comment.update" => "modified a comment on a post", "comment.destroy" => "deleted a comment on a post", \
+                  "friendship.create" => "makes firend with", "friendship.destroy" => "unfriended", \
+                  "user.follow" => "subscribes to", "user.unfollow" => "cancelled following", "user.ban" => "banned", "user.warn" => "warns"} %>
+
+    <% if activity.recipient_type == "Post" %>
+      <div class="panel-heading" id="activity-head">
+        <h2>
+          <%= link_to user_profile_path(activity.owner.id) do %>
+            <%= activity.owner.name %>
+          <% end %>
+          <%= "#{translates[activity.key]}" %>
+        </h2>
+        <%= activity.created_at %>
+      </div>
+      <div class="panel-body">
+        <% post = Post.find(activity.recipient_id) %>
+        <%= render post || "posts/post" %>
+      </div>
+
+    <% elsif activity.recipient_type == "User" %>
+      <div class="panel-heading" id="activity-head">
+        <h2>
+          <%= link_to user_profile_path(activity.owner.id) do %>
+            <%= activity.owner.name %>
+          <% end %>
+          <%= "#{translates[activity.key]}" %>
+          <%= link_to user_profile_path(activity.recipient.id) do %>
+            <%= activity.recipient.name %>
+          <% end %>
+        </h2>
+
+
+        <%= activity.created_at %>
+      </div>
+
+    <% else %>
+      <div class="panel-heading" id="activity-head">
+        <h1>Unknown Activity</h1>
+      </div>
+    <% end %>
+
+<% end %>
