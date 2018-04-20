@@ -32,7 +32,7 @@ class Ability
         can [:front, :index, :show, :like], Post, user_id: user.id
         can [:index, :show, :like], Post
         can [:index, :show], Comment
-        can [:show], PublicActivity::Activity, owner_id: user.id
+        can [:log], PublicActivity::Activity, owner_id: user.id
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship, user_id: user.id
 

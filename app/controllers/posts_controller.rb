@@ -5,7 +5,11 @@ class PostsController < ApplicationController
   skip_authorization_check only: [:front]
 
   def front
-    @posts = Post.includes(:user).where(public: true).order("updated_at DESC")
+    if user_signed_in?
+      redirect_to posts_path
+    else
+      @posts = Post.includes(:user).where(public: true).order("updated_at DESC")
+    end
   end
 
   def index
@@ -70,9 +74,9 @@ class PostsController < ApplicationController
 
   def destroy
     authorize! :destroy, @post
+    # @post.create_activity key: "post.destroy", owner: current_user, recipient: @post
     @post.destroy
     redirect_to posts_path, notice: 'Post was successfully destroyed.'
-    @post.create_activity key: "post.destroy", owner: current_user, recipient: @post
   end
 
   def like
