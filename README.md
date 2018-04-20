@@ -1,4 +1,4 @@
-# Zuckerbook -- An open source social network app, written in Ruby on Rails
+# Zuckerbook -- An Open Source Social Network App
 ```
 ```
 ## Demo: https://sheltered-hollows-68357.herokuapp.com/posts
