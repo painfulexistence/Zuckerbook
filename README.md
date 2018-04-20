@@ -1,6 +1,5 @@
 # Zuckerbook -- An Open Source Social Network App
-```
-```
+
 ## Demo: https://sheltered-hollows-68357.herokuapp.com/posts
 
 ## Prerequisites:
