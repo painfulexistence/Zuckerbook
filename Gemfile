@@ -75,3 +75,4 @@ gem "font-awesome-rails"
 gem 'bonsai-elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'cloudinary'
