@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+=begin
   searchable do
     text :body
     text :comments do
@@ -22,6 +23,7 @@ class Post < ApplicationRecord
     time :updated_at
     time :created_at
   end
+=end
 
   # This function will be called by PostsController
 
