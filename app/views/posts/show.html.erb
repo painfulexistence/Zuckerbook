@@ -1,4 +1,6 @@
 <div class="row clearfix">
   <%= render "layouts/notice-box" %>
-  <%= render @post || "post" %>
+  <div class="col-md-8 col-md-offset-2">
+    <%= render @post || "post" %>
+  </div>
 </div>
