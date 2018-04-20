@@ -5,11 +5,14 @@ class PostsController < ApplicationController
   skip_authorization_check only: [:front]
 
   def front
+    @posts = Post.includes(:user).where(public: true).order("updated_at DESC")
+=begin
     if user_signed_in?
       redirect_to posts_path
     else
       @posts = Post.includes(:user).where(public: true).order("updated_at DESC")
     end
+=end
   end
 
   def index
