@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def index
     authorize! :index, Post
+=begin
     search = Post.search(include: [:user]) do
       fulltext params[:key]
       order_by(:updated_at, :desc)
@@ -20,6 +21,13 @@ class PostsController < ApplicationController
 
     # If do without sunspot:
     # @posts = Post.order("updated_at DESC").paginate(page: params[:page], per_page: 10)
+=end
+    if params[:key]
+      @results = Post.search(params[:key])
+      @posts = @results.records.includes(:user).order("updated_at DESC")
+    else
+      @posts = Post.includes(:user).order("updated_at DESC")
+    end
   end
 
   def show
@@ -70,7 +78,7 @@ class PostsController < ApplicationController
   def like
     authorize! :like, @post
     @post.liked_by current_user
-    redirect_back fallback_location: root_path
+    redirect_back fallback_location: posts_path
     @post.create_activity key: "post.like", owner: current_user, recipient: @post
   end
 

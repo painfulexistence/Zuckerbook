@@ -7,8 +7,8 @@ class FriendshipsController < ApplicationController
     authorize! :create, @friendship
 
     if @friendship.save
-      flash[:notice] = "Successfully add a new friend"
-      redirect_back fallback_location: root_path
+      flash[:notice] = "Successfully sending your request"
+      redirect_back fallback_location: posts_path
       @friend = User.find(params[:friend_id])
       current_user.create_activity key: "friendship.create", owner: current_user, recipient: @friend
     else
@@ -24,7 +24,7 @@ class FriendshipsController < ApplicationController
     # the friendship would be destroy so set friend earlier is necessary
     @friendship.destroy
     flash[:notice] = "Successfully unfriend"
-    redirect_back fallback_location: root_path
+    redirect_back fallback_location: posts_path
     # also do not call friendship here coz it is deleted
     current_user.create_activity key: "friendship.create", owner: current_user, recipient: @friend
   end

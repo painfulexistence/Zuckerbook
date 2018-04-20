@@ -3,13 +3,14 @@ class CommentsController < ApplicationController
   check_authorization
 
   def create
-    authorize! :create, @comment
 
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
+    authorize! :create, @comment
+
     if @comment.save
-      redirect_back fallback_location: root_path
+      redirect_back fallback_location: posts_path
       @comment.create_activity key: "comment.create", owner: current_user, recipient: @post
     else
       flash[:error] = "Some erorrs occur, try again later!"

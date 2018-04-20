@@ -17,10 +17,11 @@ Rails.application.routes.draw do
   patch "users/:id/ban", to: "users#ban"
   patch "users/:id/warn", to: "users#warn"
 
-  get "users/:id/activities", to: "activities#show"
+  get "activities", to: "activities#log"
   get "admin/activities", to: "activities#index"
+  get "admin/activities/:id", to: "activities#show"
 
-  resources :notifications
+  resources :notifications, only: [:log, :index, :show, :create, :destroy]
 
   resources :posts do
     member do
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :friendships
+  resources :friendships, only: [:log, :index, :show, :create, :destroy]
 
-  root "posts#index"
+  root "posts#front"
 end

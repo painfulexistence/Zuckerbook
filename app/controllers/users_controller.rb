@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def block
-    #unfinished
+    # unfinished
     @user.block(@user)
   end
 

@@ -1,11 +1,5 @@
 <div class="row clearfix">
-  <% if notice.present? %>
-    <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default animated fadeIn" id="notice-box">
-        <p id="notice"><%= notice %></p>
-      </div>
-    </div>
-  <% end %>
+  <%= render "layouts/notice-box" %>
 
   <div class="col-md-8 col-md-offset-2 animated fadeIn" id="posts-all">
     <% if @posts.present? %>

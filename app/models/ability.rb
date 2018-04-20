@@ -25,6 +25,7 @@ class Ability
     #
     #   can :update, Article, :published => true
     can :front, Post
+    cannot :index, Post
     if user.present?
       if user.banned?
         #puts banned_checked
@@ -40,7 +41,7 @@ class Ability
         can [:front, :index, :show, :new, :create, :edit, :update, :destroy, :like], Post, user_id: user.id
         can [:index, :show, :like], Post
         can [:index, :show, :create], Comment
-        can [:show], PublicActivity::Activity, owner_id: user.id
+        can [:log], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship, user_id: user.id
 
@@ -48,7 +49,7 @@ class Ability
         #puts "admin_checked"
         can [:front, :index, :show, :new, :create, :edit, :update, :destroy, :like], Post
         can [:index, :show, :create], Comment
-        can [:index, :show], PublicActivity::Activity
+        can [:log, :index, :show], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship
       else
@@ -59,7 +60,7 @@ class Ability
         #puts "Zucker_checked"
         can [:front, :index, :show, :new, :create, :edit, :update, :destroy, :like], Post
         can [:read, :create], Comment
-        can [:index, :show], PublicActivity::Activity
+        can [:log, :index, :show], PublicActivity::Activity
         can [:index, :show, :follow, :unfollow, :block, :warn, :ban], User
         can [:index, :create, :destroy], Friendship
       end

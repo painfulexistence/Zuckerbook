@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_account_update_params, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_back fallback_location: root_path, notice: "Not allowed to do that! No authorization."
+    redirect_back fallback_location: posts_path, notice: "Not allowed to do that! No authorization."
   end
 
   protected
