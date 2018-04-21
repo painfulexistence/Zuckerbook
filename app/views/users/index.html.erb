@@ -14,7 +14,7 @@
       <div class="panel-heading" id="manager-heading">
         <div class="nav">
           <div class="navbar-left">
-            <%= image_tag user.image.url, width: 30, height: 30, class: "img-circle", id: "manager-img" unless user.nil? %>&nbsp&nbsp
+            <%= image_tag user.image_url(:thumb), class: "img-circle", id: "manager-img" unless user.image_url.nil? %>&nbsp&nbsp
           </div>
           <div class="navbar-left" id="manager-name">
             <%=  link_to user_profile_path(user) do %>

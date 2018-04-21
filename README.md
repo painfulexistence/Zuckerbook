@@ -1,7 +1,7 @@
 Zuckerbook - An open source social network app, written in Ruby on Rails
- 
 
-Demo:
+
+Demo: https://sheltered-hollows-68357.herokuapp.com/posts
 
 
 
@@ -34,8 +34,3 @@ Dependencies:
 9. 同意或拒絕交友請求
 10. Zucker可觀看每個人的友誼關係圖表
 11. 進一步的發文權限區別（例如好友貼文）
-
-
-
-
-
