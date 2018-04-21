@@ -2,7 +2,7 @@
   <div class="nav navbar-default">
     <div id="comment-body">
       <div class="navbar-header">
-        <%= image_tag comment.user.image_url(:thumb), class: "img-circle" unless comment.user.image_url.nil? %>
+        <%= image_tag comment.user.image_url(:thumb), width: 20, height: 20, class: "img-circle" unless comment.user.image_url.nil? %>
       </div>
       <div class="navbar-left">
         <%= link_to user_profile_path(comment.user) do %>

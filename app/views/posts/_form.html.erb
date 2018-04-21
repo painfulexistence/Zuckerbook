@@ -24,7 +24,7 @@
         <div class="panel-heading" id="post-head">
           <div class="nav" >
             <div class="navbar-left" id="post-user-image">
-              <%= image_tag post.user.image_url(:small), class: "img-circle" unless post.user.image_url.nil? %>&nbsp&nbsp
+              <%= image_tag post.user.image_url(:small), width: 50, height: 50, class: "img-circle" unless post.user.image_url.nil? %>&nbsp&nbsp
             </div>
             <div class="navbar-left" id="post-info">
               <%= link_to user_profile_path(post.user) do %>

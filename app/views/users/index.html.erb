@@ -14,7 +14,7 @@
       <div class="panel-heading" id="manager-heading">
         <div class="nav">
           <div class="navbar-left">
-            <%= image_tag user.image_url(:thumb), class: "img-circle", id: "manager-img" unless user.image_url.nil? %>&nbsp&nbsp
+            <%= image_tag user.image_url(:thumb), width: 20, height: 20, class: "img-circle", id: "manager-img" unless user.image_url.nil? %>&nbsp&nbsp
           </div>
           <div class="navbar-left" id="manager-name">
             <%=  link_to user_profile_path(user) do %>
@@ -86,7 +86,7 @@
               <div class="nav navbar-nav navbar-default">
                 <div class="navbar-header">
                   <div class="navbar-brand">
-                    <%= image_tag current_user.image.url, width: 20, height: 20, class: "img-circle"  unless current_user.nil? %>
+                    <%= image_tag current_user.image_url(:thumb), width: 20, height: 20, class: "img-circle"  unless current_user.image_url.nil? %>
                   </div>
                 </div>
                 <%= form_with url: "/users/#{user.id}/warn", method: :patch, class: "navbar-form navbar-left" do |f| %>

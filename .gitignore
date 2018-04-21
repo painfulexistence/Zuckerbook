@@ -21,3 +21,7 @@
 /yarn-error.log
 
 .byebug_history
+
+# ignore static image
+/public/upload/*
+/public/uploads/*

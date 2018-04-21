@@ -20,7 +20,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
-    "blank.png"
+    # "eye.jpg"
+    "http://res.cloudinary.com/dx2v1qk7g/image/upload/c_fill,h_100,w_100/v1524241526/dakxhlrlt6irihk33zop.jpg"
   end
 
   # Process files as they are uploaded:
