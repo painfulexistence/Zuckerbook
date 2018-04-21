@@ -72,7 +72,7 @@ gem "mini_magick"
 gem "jquery-rails"
 gem "font-awesome-rails"
 # gem 'will_paginate', '~> 3.1.0'
-gem 'bonsai-elasticsearch-rails'
+# gem 'bonsai-elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'cloudinary'
