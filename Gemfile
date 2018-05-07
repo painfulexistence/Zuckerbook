@@ -76,3 +76,6 @@ gem "font-awesome-rails"
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'cloudinary'
+gem 'redis', '~> 4.0', '>= 4.0.1'
+gem 'lolize', :require => 'lolize/auto'
+gem 'ruby_cowsay', '~> 0.1.2'

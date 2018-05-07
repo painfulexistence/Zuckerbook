@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'messages/create'
+
   devise_for :users, skip: "registrations"
   devise_scope :user do
     get "users/sign_up", to: "devise/registrations#new", as: "new_user_registration"
@@ -30,7 +32,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :messages
+
   resources :friendships, only: [:log, :index, :show, :create, :destroy]
 
   root "posts#front"
+
+  mount ActionCable.server => "/cable"
 end

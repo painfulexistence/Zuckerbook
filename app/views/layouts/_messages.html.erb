@@ -1,0 +1,10 @@
+<div class="panel" id="message-board">
+  <div class="panel-body" id="messages">
+  </div>
+  <div class="panel-footer" id="message-write">
+    <%= form_with model: current_user.messages.new do |f|%>
+      <%= f.text_field :content, placeholder: "Enter your message", id: "messageInput", class: "form-control", required: true, autocomplete: "off" %>
+      <%= f.submit "send", class: "btn btn-primary", style: "display: none" %>
+    <% end %>
+  </div>
+</div>

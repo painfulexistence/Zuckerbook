@@ -25,3 +25,5 @@
 # ignore static image
 /public/upload/*
 /public/uploads/*
+/lib/tasks/es.rake
+/lib/tasks/secret.rake
