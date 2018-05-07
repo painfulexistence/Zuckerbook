@@ -1,0 +1,41 @@
+<div class="navbar-left">
+  <% if user_signed_in? %>
+    <a href="/posts" class="navbar-brand animated rubberBand" id="Zuckerbrand"><strong>Markbook</strong></a>
+  <% else %>
+    <a href="/" class="navbar-brand animated fadeIn" id="Zuckerbrand"><strong>Markbook</strong></a>
+  <% end %>
+</div>
+<div id="Zucker-search">
+  <%= form_with url: posts_path, method: :get, class: "navbar-form navbar-left", local: true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :key, placeholder: "Any Keywords", class: "form-control", required: true %>
+    </div>
+    <%= f.submit "Search", class: "btn btn-default" %>
+  <% end %>
+</div>
+<div class="navbar navbar-nav navbar-right" id="Zucker-menu">
+  <div class="btn btn-group">
+    <% if user_signed_in? %>
+      <% if current_user.banned? %>
+        <span class="label label-danger btn" >You've been banned by Zucker</span>
+      <% else %>
+        <%= link_to new_post_path, class: "btn" do %>
+          <i class="fa fa-pencil"> Post</i>
+        <% end %>
+      <% end %>
+      <%= link_to edit_user_registration_path, class: "btn" do%>
+        <i class="fa fa-cog"> Account</i>
+      <% end %>
+      <%= link_to destroy_user_session_path, method: :delete, data: { confirm: "Are you sure to leave?" }, class: "btn" do%>
+        <i class="fa fa-sign-out"> Sign Out</i>
+      <% end %>
+    <% else %>
+      <%= link_to user_registration_path, class: "btn" do %>
+        <span class="fa fa-user-plus"> Sign Up</span>
+      <% end %>
+      <%= link_to new_user_session_path, class: "btn" do %>
+        <span class="fa fa-sign-in"> Sign In</span>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -2,63 +2,52 @@
 <html>
   <head>
     <title>Markbook</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application'%>
-    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <%= render "layouts/header" %>
   </head>
 
   <body>
     <div class="navbar navbar-inverse" id="Zuckerbar">
-      <div class="container-fluid col-md-8 col-md-offset-2">
-
-        <div class="navbar-left">
-          <% if user_signed_in? %>
-            <a href="/posts" class="navbar-brand animated rubberBand" id="Zuckerbrand"><strong>Markbook</strong></a>
-          <% else %>
-            <a href="/" class="navbar-brand animated fadeIn" id="Zuckerbrand"><strong>Markbook</strong></a>
-          <% end %>
-        </div>
-        <%= form_with url: posts_path, method: :get, class: "navbar-form navbar-left", local: true do |f| %>
-          <div class="form-group">
-            <%= f.text_field :key, placeholder: "Any Keywords", class: "form-control", required: true %>
-          </div>
-          <%= f.submit "Search", class: "btn btn-default" %>
-        <% end %>
-
-        <div class="navbar navbar-nav navbar-right">
-          <div class="btn btn-group">
-            <% if user_signed_in? %>
-              <% if current_user.banned? %>
-                <span class="label label-danger btn" >You've been banned by Zucker</span>
-              <% else %>
-                <%= link_to new_post_path, class: "btn" do %>
-                  <i class="fa fa-pencil"> Post</i>
-                <% end %>
-              <% end %>
-              <%= link_to edit_user_registration_path, class: "btn" do%>
-                <i class="fa fa-cog"> Account</i>
-              <% end %>
-              <%= link_to destroy_user_session_path, method: :delete, data: { confirm: "Are you sure to leave?" }, class: "btn" do%>
-                <i class="fa fa-sign-out"> Sign Out</i>
-              <% end %>
-            <% else %>
-              <%= link_to user_registration_path, class: "btn" do %>
-                <span class="fa fa-user-plus"> Sign Up</span>
-              <% end %>
-              <%= link_to new_user_session_path, class: "btn" do %>
-                <span class="fa fa-sign-in"> Sign In</span>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
+      <div class="container">
+        <%= render "layouts/zuckerbar" %>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="main">
       <%= yield %>
     </div>
+
+    <% if user_signed_in? %>
+      <div class="navbar navbar-nav navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+          <center>
+            <button id="message-open" onclick="openMessageBoard()">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </button>
+            <button id="message-close" onclick="closeMessageBoard()">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+          </center>
+          <center>
+            <%= render "layouts/messages" %>
+          </center>
+        </div>
+      </div>
+
+      <script>
+        function openMessageBoard(){
+          document.getElementById("message-open").style.display="none"
+          document.getElementById("message-close").style.display="block"
+          document.getElementById("message-board").style.display="block"
+          document.getElementsByTagName("body")[0].style.padding=" 0 0 250px 0"
+        }
+        function closeMessageBoard(){
+          document.getElementById("message-open").style.display="block"
+          document.getElementById("message-close").style.display="none"
+          document.getElementById("message-board").style.display="none"
+          document.getElementsByTagName("body")[0].style.padding=" 0 0 50px 0"
+        }
+      </script>
+    <% end %>
+
   </body>
 </html>

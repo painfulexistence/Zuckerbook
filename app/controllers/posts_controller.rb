@@ -82,7 +82,12 @@ class PostsController < ApplicationController
   def like
     authorize! :like, @post
     @post.liked_by current_user
-    redirect_back fallback_location: posts_path
+
+    if request.xhr?
+      redirect_back fallback_location: posts_path
+    else
+      redirect_back fallback_location: posts_path
+    end
     @post.create_activity key: "post.like", owner: current_user, recipient: @post
   end
 

@@ -2,7 +2,7 @@
   <div class="row clearfix animated fadeIn pulse">
 
     <% if post.errors.any? %>
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="panel">
           <div class="panel-default" id="error_explanation">
             <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -18,7 +18,7 @@
 
     <%= render "layouts/notice-box" %>
 
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
       <div class="panel panel-default">
 
         <div class="panel-heading" id="post-head">
@@ -30,7 +30,7 @@
               <%= link_to user_profile_path(post.user) do %>
                 <p class="text-success btn" id="post-name"><%= post.user.name %></p>
               <% end %>
-              <p class="text-default" id="post-time"><%= post.created_at %></p>
+              <p class="text-default" id="post-time"><i class="fa fa-user-circle-o"> Editing</i></p>
             </div>
           </div>
         </div>

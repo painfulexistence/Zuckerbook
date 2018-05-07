@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :friends, through: :friendships
   has_many :friendships, dependent: :destroy
+  has_many :messages
   acts_as_followable
   acts_as_follower
 

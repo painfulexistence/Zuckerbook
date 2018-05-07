@@ -17,7 +17,7 @@
         <% if post.user == current_user %>
           <div class="navbar-right" id="post-options">
             <div class="btn-group">
-              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false" id="post-option-open">
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" id="post-option-menu">
@@ -37,15 +37,15 @@
       <div class="panel-footer">
         <div class="btn-group">
           <button type="button" class="btn btn-info">
-            <%= link_to 'Like', like_post_path(post), method: :patch %>
+            <%= link_to 'Like', like_post_path(post), method: :patch, remote: true %>
           </button>
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
             Comment
           </button>
           <ul class="dropdown-menu" id="comment-menu">
 
-              <div class="nav navbar-nav navbar-default">
-                <div class="navbar-header">
+              <div class="nav navbar" id="comment-add">
+                <div class="navbar-header" id="comment-user">
                   <div class="navbar-brand">
                     <%= image_tag current_user.image_url(:thumb), width: 20, height: 20, class: "img-circle" unless current_user.image_url.nil? %>
                   </div>
