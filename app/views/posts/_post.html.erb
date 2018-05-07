@@ -53,7 +53,7 @@
 
                 <%= form_with url: post_comments_path(post), method: :post, class: "navbar-form navbar-left" do |f| %>
                   <div class="form-group">
-                    <%= f.text_field :content, placeholder: "Add Comment", class: "form-control", required: true, id: "comment-field" %>
+                    <%= f.text_field :content, placeholder: "Add Comment", class: "form-control", required: true, autocomplete: "off", id: "comment-field" %>
                   </div>
                   <%= f.submit "Enter", class: "btn btn-default" %>
                 <% end %>

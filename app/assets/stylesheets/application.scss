@@ -34,8 +34,7 @@ a:hover, a:visited, a:active {
 }
 
 @media screen and (max-width: 768px) {
-  #Zucker-search, #Zucker-menu, #comment-user {display: none;}
-
+  #Zucker-search, #comment-user {display: none;}
 }
 
 #Zuckerbar {
@@ -48,7 +47,7 @@ a:hover, a:visited, a:active {
 }
 
 #Zuckerbrand {
-  padding-left: 0ex;
+  padding-left: 1ex;
   padding-right: 2ex;
   color: white;
   font-size: 28px;
@@ -201,7 +200,7 @@ a:hover, a:visited, a:active {
   color: white;
 }
 #post-body {
-  padding: 3ex 3ex 1ex 3ex;
+  padding: 3ex 2ex 1ex 2ex;
   font-size: 20px;
 }
 
@@ -228,7 +227,7 @@ a:hover, a:visited, a:active {
 }
 
 #comment-body {
-  padding: 2ex 3ex 2ex 3ex;
+  padding: 2ex 1ex 2ex 1ex;
 
 }
 
