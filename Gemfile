@@ -73,8 +73,8 @@ gem "jquery-rails"
 gem "font-awesome-rails"
 # gem 'will_paginate', '~> 3.1.0'
 # gem 'bonsai-elasticsearch-rails'
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '= 0.1.9'
+gem 'elasticsearch-rails', '= 0.1.9'
 gem 'cloudinary'
 gem 'redis', '~> 4.0', '>= 4.0.1'
 gem 'lolize', :require => 'lolize/auto'
