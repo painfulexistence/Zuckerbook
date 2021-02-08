@@ -67,7 +67,7 @@ gem 'acts_as_votable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'bootstrap-sass'
 gem 'public_activity'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem "mini_magick"
 gem "jquery-rails"
 gem "font-awesome-rails"
