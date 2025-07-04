@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_04_160955) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_04_190541) do
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
     t.bigint "trackable_id"
@@ -128,9 +128,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_04_160955) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-# Could not dump table "votes" because of following StandardError
-#   Unknown type 'serial' for column 'id'
-
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type", null: false
+    t.integer "votable_id", null: false
+    t.string "voter_type", null: false
+    t.integer "voter_id", null: false
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter"
+  end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"

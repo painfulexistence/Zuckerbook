@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     member do
-      patch 'like', to: "posts#like"
+      patch :like
     end
     resources :comments
   end

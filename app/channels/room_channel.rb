@@ -1,5 +1,4 @@
 class RoomChannel < ApplicationCable::Channel
-
   # default callbacks
 
   def subscribed

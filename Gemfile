@@ -50,8 +50,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Search features
 # gem 'bonsai-elasticsearch-rails'
-gem 'elasticsearch-model', '= 0.1.9'
-gem 'elasticsearch-rails', '= 0.1.9'
+# gem 'elasticsearch-model', '= 0.1.9'
+# gem 'elasticsearch-rails', '= 0.1.9'
 
 # Development tools
 group :development, :test do

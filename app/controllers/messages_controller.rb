@@ -10,9 +10,9 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = current_user.messages.build(message_params)
+    @message = current_user.messages.new(message_params)
     if @message.save
-      ActionCable.server.broadcast "room_channel", content: @message.content, username: @message.user.name
+      ActionCable.server.broadcast 'room_channel', { content: @message.content, username: @message.user.name }
       puts "content: #{@message.content}, username: #{@message.user.name}"
     else
       render 'new'

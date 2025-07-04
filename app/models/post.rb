@@ -1,4 +1,4 @@
-require 'elasticsearch/model'
+# require 'elasticsearch/model'
 
 class Post < ApplicationRecord
   belongs_to :user
@@ -10,32 +10,26 @@ class Post < ApplicationRecord
   tracked
   # tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
 
-=begin
-  searchable do
-    text :body
-    text :comments do
-        comments.map { |comment| comment.content }
-    end
-    integer :user_id
-    time :updated_at
-    time :created_at
-  end
-=end
+  # 	searchable do
+  # 		text :body
+  # 		text :comments do
+  # 				comments.map { |comment| comment.content }
+  # 		end
+  # 		integer :user_id
+  # 		time :updated_at
+  # 		time :created_at
+  # 	end
 
   # This function will be called by PostsController
 
-=begin
-  def self.search(query)
-    __elasticsearch__.search(query) do
-      #########  DSL  ###########
-    end
-  end
-=end
-
-
+  # 	def self.search(query)
+  # 		__elasticsearch__.search(query) do
+  # 			#########  DSL  ###########
+  # 		end
+  # 	end
 end
 
 # TODO: Elasticsearch

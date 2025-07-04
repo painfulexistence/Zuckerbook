@@ -130,19 +130,6 @@ GEM
       responders
       warden (~> 1.2.3)
     drb (2.2.3)
-    elastic-transport (8.4.0)
-      faraday (< 3)
-      multi_json
-    elasticsearch (9.0.3)
-      elastic-transport (~> 8.3)
-      elasticsearch-api (= 9.0.3)
-    elasticsearch-api (9.0.3)
-      multi_json
-    elasticsearch-model (0.1.9)
-      activesupport (> 3)
-      elasticsearch (> 0.4)
-      hashie
-    elasticsearch-rails (0.1.9)
     erb (5.0.1)
     erubi (1.13.1)
     faraday (2.13.2)
@@ -165,7 +152,6 @@ GEM
     ffi (1.17.2-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashie (5.0.0)
     hodel_3000_compliant_logger (0.1.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -201,7 +187,6 @@ GEM
       logger
     mini_mime (1.1.5)
     minitest (5.25.5)
-    multi_json (1.15.0)
     multipart-post (2.4.1)
     net-http (0.6.0)
       uri
@@ -381,8 +366,6 @@ DEPENDENCIES
   cloudinary
   cssbundling-rails (~> 1.1)
   devise
-  elasticsearch-model (= 0.1.9)
-  elasticsearch-rails (= 0.1.9)
   jsbundling-rails
   listen (~> 3.9)
   lolize

@@ -1,2 +1,7 @@
 // Entry point for the build script in your package.json
-console.log("Hello, rails 8!");
+import "@hotwired/turbo-rails"
+import "./controllers"
+import "./channels"
+
+import "moment"
+import * as bootstrap from 'bootstrap'

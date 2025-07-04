@@ -1,4 +1,4 @@
-  <div class="panel panel-default" id="post">
+  <div class="panel panel-default" id="post-<%= post.id %>">
     <div class="panel-heading" id="post-head">
       <div class="nav navbar">
         <div class="navbar-left" id="post-user-image">
@@ -22,7 +22,7 @@
               </button>
               <ul class="dropdown-menu" id="post-option-menu">
                 <li><%= link_to 'Modify', edit_post_path(post) %></li>
-                <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                <li><%= link_to 'Destroy', post, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></li>
               </ul>
             </div>
           </div>
@@ -37,7 +37,7 @@
       <div class="panel-footer">
         <div class="btn-group">
           <button type="button" class="btn btn-info">
-            <%= link_to 'Like', like_post_path(post), method: :patch, remote: true %>
+            <%= link_to 'Like', like_post_path(post), data: { turbo_method: :patch, turbo_stream: true } %>
           </button>
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
             Comment
