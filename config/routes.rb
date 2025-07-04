@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   get "admin/activities", to: "activities#index"
   get "admin/activities/:id", to: "activities#show"
 
-  resources :notifications, only: [:log, :index, :show, :create, :destroy]
+  resources :notifications, only: [:index, :show, :create, :destroy] do
+    member do
+      get :log
+    end
+  end
 
   resources :posts do
     member do
@@ -34,7 +38,11 @@ Rails.application.routes.draw do
 
   resources :messages
 
-  resources :friendships, only: [:log, :index, :show, :create, :destroy]
+  resources :friendships, only: [:index, :show, :create, :destroy] do
+    member do
+      get :log
+    end
+  end
 
   root "posts#front"
 

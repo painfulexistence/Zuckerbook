@@ -38,4 +38,5 @@ class Post < ApplicationRecord
 
 end
 
-Post.import(force: true)
+# TODO: Elasticsearch
+# Post.import(force: true)

@@ -27,8 +27,12 @@ class PostsController < ApplicationController
     # @posts = Post.order("updated_at DESC").paginate(page: params[:page], per_page: 10)
 =end
     if params[:key]
-      @results = Post.search(params[:key])
-      @posts = @results.records.includes(:user).order("updated_at DESC")
+      # TODO: Elasticsearch
+      # @results = Post.search(params[:key])
+      # @posts = @results.records.includes(:user)
+      #   .order("updated_at DESC")
+      @posts = Post.includes(:user)
+        .order("updated_at DESC")
     else
       @posts = Post.includes(:user).order("updated_at DESC")
     end
