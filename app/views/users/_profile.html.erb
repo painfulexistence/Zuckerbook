@@ -31,7 +31,7 @@
     <div class="btn-group">
       <% if @friendship.present? %>
         <% if @friendship.confirmed? %>
-          <%= link_to friendship_path(@friendship), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-info" do %>
+          <%= link_to friendship_path(@friendship), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-info" do %>
             <i class="fa fa-meh-o"> Unfriend</i>
           <% end %>
         <% else %>
@@ -40,17 +40,17 @@
           </div>
         <% end %>
       <% else %>
-        <%= link_to friendships_path(friend_id: @user), method: :post, class: "btn btn-info" do %>
+        <%= link_to friendships_path(friend_id: @user), data: { turbo_method: :post }, class: "btn btn-info" do %>
           <i class="fa fa-smile-o"> Make Friend</i>
         <% end %>
       <% end %>
 
       <% if current_user.following?(@user) %>
-        <%= link_to "/users/#{@user.id}/unsubscribe", method: :patch, class: "btn btn-info" do %>
+        <%= link_to "/users/#{@user.id}/unsubscribe", data: { turbo_method: :patch }, class: "btn btn-info" do %>
           <i class="fa fa-eye">Unsubscribe</i>
         <% end %>
       <% else %>
-        <%= link_to "/users/#{@user.id}/subscribe", method: :patch, class: "btn btn-info" do %>
+        <%= link_to "/users/#{@user.id}/subscribe", data: { turbo_method: :patch }, class: "btn btn-info" do %>
           <i class="fa fa-eye">Subscribe</i>
         <% end %>
       <% end %>

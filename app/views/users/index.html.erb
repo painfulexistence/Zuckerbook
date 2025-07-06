@@ -81,7 +81,7 @@
           <%# link_to "View Friendship", "#", class: "btn btn-info" %>
 
           <button type="button" class="btn btn-danger">
-            <%= link_to "BAN", "/users/#{user.id}/ban", method: :patch %>
+            <%= link_to "BAN", "/users/#{user.id}/ban", data: { turbo_method: :patch } %>
           </button>
           <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expaned="false">
             Send Warning
@@ -97,7 +97,7 @@
 										<% end %>
                   </div>
                 </div>
-                <%= form_with url: "/users/#{user.id}/warn", method: :patch, class: "navbar-form navbar-left" do |f| %>
+                <%= form_with url: "/users/#{user.id}/warn", data: { turbo_method: :patch }, class: "navbar-form navbar-left" do |f| %>
                   <div class="form-group">
                     <%= f.text_field :content, placeholder: "Write down warning messages...", class: "form-control", required: true %>
                   </div>
