@@ -28,8 +28,10 @@ end
 
 # Authentication & Authorization
 gem 'devise'
+gem "devise-jwt", "~> 0.12.1"
 gem 'rolify'
 gem 'cancancan', '~> 3.0'
+gem 'jsonapi-serializer'
 
 # Social features
 gem 'acts_as_votable'
@@ -41,6 +43,9 @@ gem 'cloudinary'
 
 # Redis for ActionCable and caching
 gem 'redis', '~> 5.0'
+
+# GraphQL
+gem "graphql", "~> 2.5"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -56,6 +61,7 @@ group :development, :test do
   gem 'capybara', '~> 3.40'
   gem 'selenium-webdriver'
   gem 'brakeman', require: false
+	gem 'graphiql-rails'
 end
 
 group :development do

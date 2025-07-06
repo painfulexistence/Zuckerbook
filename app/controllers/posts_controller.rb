@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy like]
   check_authorization
 
+  respond_to :html, :json
+
   def index
     authorize! :index, Post
     #     search = Post.search(include: [:user]) do
@@ -25,6 +27,11 @@ class PostsController < ApplicationController
              else
                Post.includes(:user).order('updated_at DESC')
              end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show

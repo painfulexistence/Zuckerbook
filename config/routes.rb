@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: "registrations"
+  devise_for :users, skip: "registrations", controllers: {
+    sessions: 'sessions'
+  }
   devise_scope :user do
     get "users/sign_up", to: "devise/registrations#new", as: "new_user_registration"
     post "users/sign_up", to: "devise/registrations#create", as: "user_registration"
@@ -7,6 +9,11 @@ Rails.application.routes.draw do
     put "users/update", to: "devise/registrations#update", as: "update_user_registration"
     delete "users/clean", to: "devise/registrations#destroy", as: "clean_up"
   end
+
+	if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+	end
+  post "/graphql", to: "graphql#execute"
 
   get "admin", to: "users#index", as: "admin"
   get "users/:id", to: "users#show", as: "user_profile"

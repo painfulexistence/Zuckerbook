@@ -2,7 +2,8 @@ class User < ApplicationRecord
   rolify
   resourcify
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
