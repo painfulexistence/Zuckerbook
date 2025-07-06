@@ -9,7 +9,7 @@
       </div>
 
       <div class="panel-body">
-        <%= devise_error_messages! %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="form-group">
           <div class="field">
             <%= f.label :avatar %><br />

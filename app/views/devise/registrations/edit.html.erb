@@ -9,7 +9,7 @@
       </div>
 
       <div class="panel-body">
-        <%= devise_error_messages! %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
@@ -74,7 +74,7 @@
         Unhappy?
       </h5></p>
       <div class="btn-group">
-        <%= button_to "Cancel my account", clean_up_path, data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+        <%= button_to "Cancel my account", clean_up_path, data: { turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
       </div>
     </div>
   </div>
