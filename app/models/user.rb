@@ -13,7 +13,7 @@ class User < ApplicationRecord
   acts_as_followable
   acts_as_follower
 
-  mount_uploader :image, ImageUploader
+  has_one_attached :avatar
 
   include PublicActivity::Model
   tracked
@@ -21,8 +21,8 @@ class User < ApplicationRecord
   after_create :set_role
 
   private
-  def set_role
-    self.add_role(:newbie) if self.roles.blank?
-  end
 
+  def set_role
+    add_role(:newbie) if roles.blank?
+  end
 end

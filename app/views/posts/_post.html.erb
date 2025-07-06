@@ -2,7 +2,11 @@
     <div class="panel-heading" id="post-head">
       <div class="nav navbar">
         <div class="navbar-left" id="post-user-image">
-          <%= image_tag post.user.image_url(:small), width: 50, height: 50, class: "img-circle" unless post.user.image_url.nil? %>&nbsp&nbsp
+          <% if post.user.avatar.attached? %>
+						<%= image_tag post.user.avatar.variant(resize_to_fill: [50, 50]), class: "img-circle" %>
+					<% else %>
+						<%= image_tag "eye.jpg", width: 50, height: 50, class: "img-circle" %>
+					<% end %>&nbsp&nbsp
         </div>
         <div class="navbar-left" id="post-info">
           <%= link_to user_profile_path(post.user) do %>
@@ -47,7 +51,11 @@
               <div class="nav navbar" id="comment-add">
                 <div class="navbar-header" id="comment-user">
                   <div class="navbar-brand">
-                    <%= image_tag current_user.image_url(:thumb), width: 20, height: 20, class: "img-circle" unless current_user.image_url.nil? %>
+                    <% if current_user.avatar.attached? %>
+											<%= image_tag current_user.avatar.variant(resize_to_fill: [20, 20]), class: "img-circle" %>
+										<% else %>
+											<%= image_tag "eye.jpg", width: 20, height: 20, class: "img-circle" %>
+										<% end %>
                   </div>
                 </div>
 

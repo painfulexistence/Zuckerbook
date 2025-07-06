@@ -16,9 +16,9 @@
 
         <div class="form-group">
           <div class="field">
-            <%= f.label :mugshot %><br />
-            <%= image_tag resource.image_url, width: 100, height: 100 unless resource.image_url.nil? %>
-            <%= f.file_field :image, placeholder: "new image" %>
+            <%= f.label :avatar %><br />
+            <%= image_tag resource.avatar, width: 100, height: 100 if resource.avatar.attached? %>
+            <%= f.file_field :avatar, placeholder: "new avatar" %>
           </div>
           <br>
 
