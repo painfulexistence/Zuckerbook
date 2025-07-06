@@ -1,7 +1,7 @@
 <% time = Time.now %>
 <% @now = "#{time.year}-#{time.month}-#{time.day}" %>
 <div class="col-md-6 col-md-offset-3" id="log-form">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
     <div class="panel panel-default">
 
       <div class="panel-heading" id="log-name">
