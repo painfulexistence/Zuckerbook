@@ -3,7 +3,9 @@
 
   <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 animated fadeIn" id="posts-all">
     <% if @posts.present? %>
-      <%= render @posts %>
+      <% @posts.each do |post| %>
+        <%= render partial: "posts/post", locals: { post: post } %>
+      <% end %>
     <% else %>
       <div class="jumbotron">
         <h1>Sorry, no public post for now!</h1>

@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'messages/create'
-
   devise_for :users, skip: "registrations"
   devise_scope :user do
     get "users/sign_up", to: "devise/registrations#new", as: "new_user_registration"
@@ -9,7 +6,6 @@ Rails.application.routes.draw do
     get "users/account", to: "devise/registrations#edit", as: "edit_user_registration"
     put "users/update", to: "devise/registrations#update", as: "update_user_registration"
     delete "users/clean", to: "devise/registrations#destroy", as: "clean_up"
-
   end
 
   get "admin", to: "users#index", as: "admin"
@@ -44,7 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root "posts#front"
+  root "home#index"
 
   mount ActionCable.server => "/cable"
 end

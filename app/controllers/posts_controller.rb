@@ -1,16 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:front]
+  before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy like]
   check_authorization
-  skip_authorization_check only: [:front]
-
-  def front
-    if user_signed_in?
-      redirect_to posts_path
-    else
-      @posts = Post.includes(:user).where(public: true).order('updated_at DESC')
-    end
-  end
 
   def index
     authorize! :index, Post
