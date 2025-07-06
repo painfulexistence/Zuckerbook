@@ -37,8 +37,7 @@ gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'public_activity'
 
 # File uploads
-gem 'carrierwave', '~> 2.0'
-gem "mini_magick"
+gem "image_processing", "~> 1.2"
 gem 'cloudinary'
 
 # Redis for ActionCable and caching

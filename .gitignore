@@ -28,6 +28,9 @@
 /lib/tasks/es.rake
 /lib/tasks/secret.rake
 
+/storage/*
+!/storage/.keep
+
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
