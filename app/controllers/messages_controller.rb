@@ -1,24 +1,16 @@
 class MessagesController < ApplicationController
-
-  def index
-    @messages = current_user.messages
-  end
-
-
-  def new
-    @message = current_user.messages.new
-  end
+	before_action :authenticate_user!
 
   def create
     @message = current_user.messages.new(message_params)
     if @message.save
       ActionCable.server.broadcast 'room_channel', { content: @message.content, username: @message.user.name }
       puts "content: #{@message.content}, username: #{@message.user.name}"
+      head :ok
     else
-      render 'new'
+      head :unprocessable_entity
     end
   end
-
 
   private
   def message_params

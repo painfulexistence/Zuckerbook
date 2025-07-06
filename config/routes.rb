@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :messages
+	resources :messages, only: %i[create]
 
   resources :friendships, only: [:index, :show, :create, :destroy] do
     member do
