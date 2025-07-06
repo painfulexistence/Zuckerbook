@@ -1,17 +1,22 @@
 class User < ApplicationRecord
   rolify
   resourcify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :friends, through: :friendships
   has_many :friendships, dependent: :destroy
   has_many :messages
-  acts_as_followable
-  acts_as_follower
+
+	# as followable
+  has_many :passive_follows, class_name: "Follow", foreign_key: :followable_id, dependent: :destroy
+  has_many :followers, through: :passive_follows, source: :follower, source_type: "User"
+
+	# as follower
+	has_many :active_follows, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
+  has_many :followees, through: :active_follows, source: :followable, source_type: "User"
 
   has_one_attached :avatar
 
@@ -20,8 +25,20 @@ class User < ApplicationRecord
 
   after_create :set_role
 
-  private
+	def following?(other)
+  	followees.include?(other)
+	end
 
+  def follow(other)
+    return if self == other || following?(other)
+    active_follows.create(followable: other, follower: self)
+  end
+
+  def unfollow(other)
+    active_follows.find_by(followable: other)&.destroy
+  end
+
+	private
   def set_role
     add_role(:newbie) if roles.blank?
   end

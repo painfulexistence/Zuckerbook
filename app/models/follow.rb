@@ -1,11 +1,11 @@
 class Follow < ActiveRecord::Base
+	self.table_name = "follows"
 
-  extend ActsAsFollower::FollowerLib
-  extend ActsAsFollower::FollowScopes
-
-  # NOTE: Follows belong to the "followable" and "follower" interface
   belongs_to :followable, polymorphic: true
   belongs_to :follower,   polymorphic: true
+
+	# No repeated follows
+	validates :follower_id, uniqueness: { scope: [:followable_id, :followable_type] }
 
   def block!
     self.update_attribute(:blocked, true)

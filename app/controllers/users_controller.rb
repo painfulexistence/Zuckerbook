@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def unfollow
     authorize! :unfollow, @user
-    current_user.stop_following(@user)
+    current_user.unfollow(@user)
     redirect_back fallback_location: user_profile_path(@user)
     current_user.create_activity key: "user.unfollow", owner: current_user, recipient: @user
   end

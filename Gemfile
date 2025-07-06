@@ -33,7 +33,6 @@ gem 'cancancan', '~> 3.0'
 
 # Social features
 gem 'acts_as_votable'
-gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'public_activity'
 
 # File uploads
