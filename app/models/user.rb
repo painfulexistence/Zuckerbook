@@ -39,6 +39,14 @@ class User < ApplicationRecord
     active_follows.find_by(followable: other)&.destroy
   end
 
+  def followers_count
+    followers.count
+  end
+
+  def following_count
+    followees.count
+  end
+
 	private
   def set_role
     add_role(:newbie) if roles.blank?

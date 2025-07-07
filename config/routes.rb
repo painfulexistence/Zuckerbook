@@ -47,6 +47,26 @@ Rails.application.routes.draw do
     end
   end
 
+	namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show, :update] do
+        member do
+          patch :follow
+          patch :unfollow
+          patch :ban
+          patch :warn
+        end
+      end
+
+      resources :posts, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          patch :like
+        end
+        resources :comments, only: [:create, :update, :destroy]
+      end
+    end
+  end
+
   root "home#index"
 
   mount ActionCable.server => "/cable"
