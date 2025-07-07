@@ -1,16 +1,22 @@
-## Demo:
+# Zuckerbook
+![Zuckerbook home page](.github/media/screenshot.png)
 
-## Prerequisites:
-1. Ruby 3.4
-2. Rails 8.0
-3. Redis Server
-4. PostgreSQL
-5. Elasticsearch Cluster
-6. Cloudinary Storage Space
+<!-- ### Demo -->
 
-## Installation Tutorial: (unfinished)
+## Run the Project
+### Prerequisites
+- Ruby 3.4
+- Rails 8.0
+- Redis Server
+- PostgreSQL (production only)
+- Elasticsearch Cluster (production only)
+- Cloudinary Storage Space (production only)
 
-## Things you should know first:
+### Setup
+```bash
+```
+
+## Things you should know first
 
 * The app is built for monitoring users' daily activity.
 
@@ -18,7 +24,7 @@
 
 * We are collecting data, DO NOT put any important data here.
 
-## Description
+## 簡介
 一個以RoR寫出的開源社群軟體。
 資料庫使用PostgreSQL，搜尋使用BonsaiElasticsearch，雲端儲存使用Cloudinary。
 目前擁有的功能是：
