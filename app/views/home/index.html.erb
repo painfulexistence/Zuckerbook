@@ -46,7 +46,7 @@
       max-width: 800px;
     }
 
-    .endpoint {
+    .feature {
       background: rgba(255,255,255,0.1);
       border-left: 4px solid #fff;
       padding: 15px;
@@ -54,7 +54,7 @@
       border-radius: 8px;
     }
 
-    .method {
+    .feature-item {
       font-weight: bold;
       color: #fff;
       font-size: 1.1rem;
@@ -121,49 +121,54 @@
     <div class="row">
       <div class="col-md-6">
         <h4><i class="fas fa-user-shield"></i> Authentication</h4>
-        <div class="endpoint">
-          <div class="method">POST</div>
-          <div class="url">/api/v1/sessions</div>
-          <p>Login and get JWT token</p>
-        </div>
-        <div class="endpoint">
-          <div class="method">POST</div>
-          <div class="url">/api/v1/registrations</div>
-          <p>Register new user</p>
+        <div class="feature">
+          <div class="feature-item">JWT-based authentication</div>
         </div>
       </div>
 
       <div class="col-md-6">
-        <h4><i class="fas fa-comments"></i> Posts</h4>
-        <div class="endpoint">
-          <div class="method">GET</div>
-          <div class="url">/api/v1/posts</div>
-          <p>Get all posts</p>
-        </div>
-        <div class="endpoint">
-          <div class="method">POST</div>
-          <div class="url">/api/v1/posts</div>
-          <p>Create new post</p>
+        <h4><i class="fas fa-comments"></i> Authorization</h4>
+        <div class="feature">
+          <div class="feature-item">Role-based authorization</div>
         </div>
       </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-2">
       <div class="col-md-6">
-        <h4><i class="fas fa-users"></i> Users</h4>
-        <div class="endpoint">
-          <div class="method">GET</div>
-          <div class="url">/api/v1/users</div>
-          <p>Get all users</p>
+        <h4><i class="fas fa-users"></i> Social Interactions</h4>
+        <div class="feature">
+          <div class="feature-item">Friendships</div>
+          <div class="feature-item">Followers</div>
+					<div class="feature-item">My activities</div>
+					<%# <div class="feature-item">Block users</div> %>
         </div>
       </div>
 
-      <div class="col-md-6">
-        <h4><i class="fas fa-comment-dots"></i> Comments</h4>
-        <div class="endpoint">
-          <div class="method">POST</div>
-          <div class="url">/api/v1/posts/:id/comments</div>
-          <p>Create comment</p>
+			<div class="col-md-6">
+        <h4><i class="fas fa-pen"></i> Posts & Comments</h4>
+        <div class="feature">
+          <div class="feature-item">Write posts</div>
+          <div class="feature-item">Comment on posts</div>
+          <div class="feature-item">Like posts</div>
+					<div class="feature-item">Public/private posts</div>
+        </div>
+      </div>
+		</div>
+
+		<div class="row mt-2">
+			<div class="col-md-6">
+        <h4><i class="fas fa-comment-dots"></i> Messages</h4>
+        <div class="feature">
+          <div class="feature-item">Instant messages</div>
+        </div>
+      </div>
+
+			<div class="col-md-6">
+        <h4><i class="fas fa-eye"></i> Admin</h4>
+        <div class="feature">
+					<div class="feature-item">Activity dashboard</div>
+					<div class="feature-item">Ban users</div>
         </div>
       </div>
     </div>
