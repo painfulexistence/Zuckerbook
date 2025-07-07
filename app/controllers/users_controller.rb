@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts.order("updated_at DESC")
     authorize! :show, @user
+    @posts = @user.posts.order("updated_at DESC")
   end
 
   def follow
