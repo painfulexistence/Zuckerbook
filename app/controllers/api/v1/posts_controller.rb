@@ -56,7 +56,7 @@ module Api
         if @post.save
           @post.create_activity key: 'post.create', owner: current_user, recipient: @post
 					# render json: @post, status: :created
-          render json: PostSerializer.new(@post, include: [:user]).serializable_hash, status: :created
+          render json: PostSerializer.new(@post).serializable_hash, status: :created
         else
           render_error(@post.errors.full_messages)
         end
@@ -67,7 +67,7 @@ module Api
         if @post.update(post_params)
           @post.create_activity key: 'post.update', owner: current_user, recipient: @post
 					# render json: @post
-          render json: PostSerializer.new(@post, include: [:user]).serializable_hash
+          render json: PostSerializer.new(@post).serializable_hash
         else
           render_error(@post.errors.full_messages)
         end

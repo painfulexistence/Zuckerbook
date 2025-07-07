@@ -44,6 +44,7 @@ class Ability
         can [:log], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship, user_id: user.id
+				can [:create], Message, user_id: user.id
 
       elsif user.has_role?(:admin, user)
         #puts "admin_checked"
@@ -52,6 +53,7 @@ class Ability
         can [:log, :index, :show], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship
+				can [:create], Message, user_id: user.id
       else
         #new role can be implemented here
       end
@@ -63,6 +65,7 @@ class Ability
         can [:log, :index, :show], PublicActivity::Activity
         can [:index, :show, :follow, :unfollow, :block, :warn, :ban], User
         can [:index, :create, :destroy], Friendship
+				can [:create], Message, user_id: user.id
       end
 
 
