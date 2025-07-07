@@ -78,4 +78,6 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => "/cable"
 	mount Rswag::Ui::Engine => '/api-docs'
+
+	get '*path', to: 'home#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
