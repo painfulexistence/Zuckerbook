@@ -55,7 +55,7 @@
           <ul class="text-primary list-group" id="manager-links" >
             <li>Role?&nbsp&nbsp<span id="links-label"><%= role %></span></li>
             <li>Can/Cannot?</li>
-            <li><%= link_to "Recent Activity?", "/admin/activities/#{user.id}", id: "manager-link" %><span id="links-label"><i class="fa fa-angle-double-left">  check</i></span></li>
+            <li><%= link_to "Recent Activity?", user_activities_path(user), id: "manager-link" %><span id="links-label"><i class="fa fa-angle-double-left">  check</i></span></li>
           </ul>
         </div>
 

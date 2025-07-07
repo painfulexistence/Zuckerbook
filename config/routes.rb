@@ -3,11 +3,11 @@ Rails.application.routes.draw do
     sessions: 'sessions'
   }
   devise_scope :user do
-    get "users/sign_up", to: "devise/registrations#new", as: "new_user_registration"
-    post "users/sign_up", to: "devise/registrations#create", as: "user_registration"
-    get "users/account", to: "devise/registrations#edit", as: "edit_user_registration"
-    put "users/update", to: "devise/registrations#update", as: "update_user_registration"
-    delete "users/clean", to: "devise/registrations#destroy", as: "clean_up"
+    get "sign_up", to: "devise/registrations#new", as: "new_user_registration"
+    post "sign_up", to: "devise/registrations#create", as: "user_registration"
+    get "account", to: "devise/registrations#edit", as: "edit_user_registration"
+    put "account_update", to: "devise/registrations#update", as: "update_user_registration"
+    delete "account_delete", to: "devise/registrations#destroy", as: "clean_up"
   end
 
 	if Rails.env.development?
@@ -15,22 +15,15 @@ Rails.application.routes.draw do
 	end
   post "/graphql", to: "graphql#execute"
 
-  get "admin", to: "users#index", as: "admin"
+	get "admin", to: "users#index", as: "admin"
+  get "users/:id/activities", to: "activities#show", as: "user_activities"
+  get "activities", to: "activities#index"
+
   get "users/:id", to: "users#show", as: "user_profile"
   patch "users/:id/subscribe", to: "users#follow"
   patch "users/:id/unsubscribe", to: "users#unfollow"
   patch "users/:id/ban", to: "users#ban"
   patch "users/:id/warn", to: "users#warn"
-
-  get "activities", to: "activities#log"
-  get "admin/activities", to: "activities#index"
-  get "admin/activities/:id", to: "activities#show"
-
-  resources :notifications, only: [:index, :show, :create, :destroy] do
-    member do
-      get :log
-    end
-  end
 
   resources :posts do
     member do
@@ -41,15 +34,17 @@ Rails.application.routes.draw do
 
 	resources :messages, only: %i[create]
 
-  resources :friendships, only: [:index, :show, :create, :destroy] do
-    member do
-      get :log
-    end
-  end
+  resources :friendships, only: [:index, :show, :create, :destroy]
+	get :my_friendships, to: "friendships#log"
+
+	get :my_activities, to: "activities#log"
+
+  resources :notifications, only: [:index, :show, :create, :destroy]
+	get :my_notifications, to: "notifications#log"
 
 	namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :show, :update] do
+      resources :users, only: [:index, :show] do
         member do
           patch :follow
           patch :unfollow
@@ -66,6 +61,16 @@ Rails.application.routes.draw do
       end
 
 			resources :messages, only: [:create]
+
+			resources :friendships, only: [:index, :show, :create, :destroy]
+			get :my_friendships, to: "friendships#log"
+
+			resources :activities, only: [:index]
+			get "users/:id/activities", to: "activities#show"
+			get :my_activities, to: "activities#log"
+
+			resources :notifications, only: [:index, :show, :create, :destroy]
+			get :my_notifications, to: "notifications#log"
     end
   end
 
