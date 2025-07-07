@@ -1,12 +1,12 @@
-## Demo: https://sheltered-hollows-68357.herokuapp.com/
+## Demo:
 
 ## Prerequisites:
-1. Ruby 2.5.1
-2. Rails 5.1.6
-3. PostgreSQL
-4. Elasticsearch Cluster
-5. Cloudinary Storage Space
-6. Redis Server
+1. Ruby 3.4
+2. Rails 8.0
+3. Redis Server
+4. PostgreSQL
+5. Elasticsearch Cluster
+6. Cloudinary Storage Space
 
 ## Installation Tutorial: (unfinished)
 
@@ -20,17 +20,17 @@
 
 ## Description
 一個以RoR寫出的開源社群軟體。
-資料庫使用PostgreSQL，搜尋使用BonsaiElasticsearch,雲端儲存使用Cloudinary。
+資料庫使用PostgreSQL，搜尋使用BonsaiElasticsearch，雲端儲存使用Cloudinary。
 目前擁有的功能是：
 1. 使用者帳戶（儲存大頭貼、基本資料）
 2. 管理者後台（可以看到每個使用者的活動狀況，包括追蹤、加友和發布貼文的狀況）
-2. 社群操作（追蹤、加友、喜歡貼文、評論）
-3. 簡單的文章搜索（全文搜索，不包含評論的部份）
-4. 簡單的文章權限（只分公開貼文，和限於註冊者的貼文）
-5. 多重角色（最高管理者Zucker、管理者Admin、使用者Newbie、未註冊者）
-6. 禁言功能（Zucker可隨時停止使用者發文的權限）
-7. 註冊與刪除帳戶功能
-8. 即時聊天室（訊息會在資料庫備份，不過聊天室本身不顯示歷史訊息）
+3. 社群操作（追蹤、加友、喜歡貼文、評論）
+4. 簡單的文章搜索（全文搜索，不包含評論的部份）
+5. 簡單的文章權限（只分公開貼文，和限於註冊者的貼文）
+6. 多重角色（最高管理者Zucker、管理者Admin、使用者Newbie、未註冊者）
+7. 禁言功能（Zucker可隨時停止使用者發文的權限）
+8. 註冊與刪除帳戶
+9. 即時聊天室
 
 尚在處理中的功能是：
 1. 警告功能（Zucker可發訊息警告使用者）
@@ -54,3 +54,6 @@
 *20180507
 調整響應式設計，避免在不同裝置運行時會有的版面錯誤
 新增聊天功能（ActionCable+RedisServer）
+
+*20250705
+Upgrade to Rails 8.0
