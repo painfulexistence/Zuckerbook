@@ -62,6 +62,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'brakeman', require: false
 	gem 'graphiql-rails'
+	gem 'rswag-ui'
 end
 
 group :development do

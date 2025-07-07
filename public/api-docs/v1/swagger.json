@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Zuckerbook API",
+    "version": "v1",
+    "description": "API for Zuckerbook",
+    "contact": {
+      "name": "Creator",
+      "email": "ming.crepuscular@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+	"components": {
+    "securitySchemes": {
+      "bearer_auth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+		},
+		"paths": {
+		}
+	}
+}

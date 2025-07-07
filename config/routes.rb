@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   root "home#index"
 
   mount ActionCable.server => "/cable"
+	mount Rswag::Ui::Engine => '/api-docs'
 end
