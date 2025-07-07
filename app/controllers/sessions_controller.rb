@@ -21,6 +21,7 @@ class SessionsController < Devise::SessionsController
               token: request.env['warden-jwt_auth.token']
             }
           }
+          return
         end
       end
     end
@@ -34,7 +35,8 @@ class SessionsController < Devise::SessionsController
         if request.format.json?
           render json: {
             status: { code: 200, message: 'Signed out successfully.' }
-          } and return
+          }
+          return
         end
       end
     end
