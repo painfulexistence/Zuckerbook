@@ -24,10 +24,10 @@ module Api
 					# @posts = @results.records.includes(:user)
 					#   .order("updated_at DESC")
 					Post.includes(:comments, user: :avatar_attachment)
-						.order('updated_at DESC').limit(100)
+						.order('created_at DESC').limit(100)
 				else
 					Post.includes(:comments, user: :avatar_attachment)
-						.order('updated_at DESC').limit(100)
+						.order('created_at DESC').limit(100)
 				end
 				# render json: @posts
 				render json: PostSerializer.new(@posts, include: [:user]).serializable_hash
