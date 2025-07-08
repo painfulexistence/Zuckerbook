@@ -43,6 +43,15 @@ Rails.application.routes.draw do
 	get :my_notifications, to: "notifications#log"
 
 	namespace :api do
+		namespace :auth do
+			devise_scope :user do
+				post :sign_in, to: "sessions#create"
+				delete :sign_out, to: "sessions#destroy"
+				post :sign_up, to: "registrations#create"
+				put :account_update, to: "registrations#update"
+				delete :account_delete, to: "registrations#destroy"
+			end
+		end
     namespace :v1 do
       resources :users, only: [:index, :show] do
         member do
