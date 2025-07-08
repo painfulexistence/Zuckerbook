@@ -129,6 +129,8 @@ GEM
       zeitwerk (~> 2.6)
     erb (5.0.1)
     erubi (1.13.1)
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.13.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -380,6 +382,7 @@ DEPENDENCIES
   cssbundling-rails (~> 1.1)
   devise
   devise-jwt (~> 0.12.1)
+  faker
   graphiql-rails
   graphql (~> 2.5)
   image_processing (~> 1.2)

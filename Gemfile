@@ -63,6 +63,7 @@ group :development, :test do
   gem 'brakeman', require: false
 	gem 'graphiql-rails'
 	gem 'rswag-ui'
+	gem 'faker'
 end
 
 group :development do
