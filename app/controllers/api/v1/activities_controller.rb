@@ -8,8 +8,8 @@ module Api
 				@activities = @activity_model
 					.where(owner_id: current_user.id)
 					.includes(:owner, :recipient)
-					.limit(20)
 					.order("created_at DESC")
+					.limit(20)
 				render json: ActivitySerializer.new(@activities).serializable_hash
 			end
 
@@ -18,6 +18,7 @@ module Api
 				@activities = @activity_model
 					.includes(:owner, :recipient)
 					.order("created_at DESC")
+					.limit(100)
 				render json: ActivitySerializer.new(@activities).serializable_hash
 			end
 

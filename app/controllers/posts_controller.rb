@@ -22,10 +22,13 @@ class PostsController < ApplicationController
                # @results = Post.search(params[:key])
                # @posts = @results.records.includes(:user)
                #   .order("updated_at DESC")
-               Post.includes(:user)
-                   .order('updated_at DESC')
+               Post.includes(:comments, user: :avatar_attachment)
+                .order('updated_at DESC')
+								.limit(100)
              else
-               Post.includes(:user).order('updated_at DESC')
+               Post.includes(:comments, user: :avatar_attachment)
+							 	.order('updated_at DESC')
+								.limit(100)
              end
 
     respond_to do |format|
@@ -54,20 +57,20 @@ class PostsController < ApplicationController
     authorize! :create, @post
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
       @post.create_activity key: 'post.create', owner: current_user, recipient: @post
+      respond_with @post, location: @post
     else
-      render :new
+      respond_with @post
     end
   end
 
   def update
     authorize! :update, @post
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
       @post.create_activity key: 'post.update', owner: current_user, recipient: @post
+      respond_with @post, location: @post
     else
-      render :edit
+      respond_with @post
     end
   end
 
@@ -75,7 +78,7 @@ class PostsController < ApplicationController
     authorize! :destroy, @post
     # @post.create_activity key: "post.destroy", owner: current_user, recipient: @post
     @post.destroy
-    redirect_to posts_path, notice: 'Post was successfully destroyed.'
+    respond_with @post, location: posts_path
   end
 
   def like
@@ -85,6 +88,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.turbo_stream { redirect_back fallback_location: posts_path }
       format.html { redirect_back fallback_location: posts_path }
+      format.json { render json: { status: 'liked' } }
     end
     @post.create_activity key: 'post.like', owner: current_user, recipient: @post
   end

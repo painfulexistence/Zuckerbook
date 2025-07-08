@@ -10,7 +10,7 @@ class ActivitiesController < ApplicationController
 
   def index
     authorize! :index, @activities_model
-    @activities = @activities_model.includes(:owner, :recipient).order("created_at DESC")
+    @activities = @activities_model.includes(:owner, :recipient).order("created_at DESC").limit(100)
   end
 
 	def show

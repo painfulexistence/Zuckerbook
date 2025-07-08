@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     authorize! :index, User
-    @users = User.all
+    @users = User.all.limit(100)
   end
 
   def show

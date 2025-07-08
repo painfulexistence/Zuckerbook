@@ -2,7 +2,6 @@ module Api
   module V1
 		class CommentsController < Api::V1::ApiController
 			# before_action :authenticate_user!
-			# check_authorization
 
 			# respond_to :json
 

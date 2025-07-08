@@ -3,7 +3,6 @@ module Api
     class PostsController < Api::V1::ApiController
 			# before_action :authenticate_user!
 			before_action :set_post, only: %i[show update destroy like]
-			# check_authorization
 
 			# respond_to :json
 
@@ -24,9 +23,11 @@ module Api
 					# @results = Post.search(params[:key])
 					# @posts = @results.records.includes(:user)
 					#   .order("updated_at DESC")
-					Post.includes(:user).order('updated_at DESC')
+					Post.includes(:comments, user: :avatar_attachment)
+						.order('updated_at DESC').limit(100)
 				else
-					Post.includes(:user).order('updated_at DESC')
+					Post.includes(:comments, user: :avatar_attachment)
+						.order('updated_at DESC').limit(100)
 				end
 				# render json: @posts
 				render json: PostSerializer.new(@posts, include: [:user]).serializable_hash
@@ -37,16 +38,6 @@ module Api
 				# render json: @post
         render json: PostSerializer.new(@post, include: [:user]).serializable_hash
       end
-
-			# def new
-			# 	@post = Post.new
-			# 	@post.user = current_user
-			# 	authorize! :new, @post
-			# end
-
-			# def edit
-			# 	authorize! :edit, @post
-			# end
 
       def create
         @post = Post.new(post_params)

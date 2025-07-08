@@ -5,7 +5,7 @@ module Api
 
 			def index
 				authorize! :index, User
-				@users = User.all
+				@users = User.all.limit(100)
 				# render json: @users
 				render json: UserSerializer.new(@users).serializable_hash
 			end
