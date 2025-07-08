@@ -41,6 +41,9 @@ gem 'public_activity'
 gem "image_processing", "~> 1.2"
 gem 'cloudinary'
 
+# Background jobs
+gem 'sidekiq'
+
 # Redis for ActionCable and caching
 gem 'redis', '~> 5.0'
 

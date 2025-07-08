@@ -324,6 +324,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (8.0.5)
+      connection_pool (>= 2.5.0)
+      json (>= 2.9.0)
+      logger (>= 1.6.2)
+      rack (>= 3.1.0)
+      redis-client (>= 0.23.2)
     spring (2.1.1)
     sqlite3 (2.7.1-aarch64-linux-gnu)
     sqlite3 (2.7.1-aarch64-linux-musl)
@@ -401,6 +407,7 @@ DEPENDENCIES
   rswag-ui
   ruby_cowsay (~> 0.1.2)
   selenium-webdriver
+  sidekiq
   spring
   sqlite3 (~> 2.7)
   tzinfo-data
