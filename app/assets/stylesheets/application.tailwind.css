@@ -1,0 +1,99 @@
+
+@import "@radix-ui/themes/styles.css";
+@tailwind base;
+@tailwind components;
+@import "tw-animate-css";
+@tailwind utilities;
+
+.radix-themes {
+
+}
+
+body {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	min-height: 100vh;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.zucker-background {
+	background-image: url("desert.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.hero-section {
+	text-align: center;
+	padding: 100px 20px;
+	color: white;
+}
+
+.hero-title {
+	font-size: 3.5rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+	font-size: 1.5rem;
+	margin-bottom: 40px;
+	opacity: 0.9;
+}
+
+.overview-section {
+	background: rgba(255,255,255,0.1);
+	backdrop-filter: blur(10px);
+	border-radius: 15px;
+	padding: 40px;
+	margin: 20px auto;
+	max-width: 800px;
+}
+
+.feature {
+	background: rgba(255,255,255,0.1);
+	border-left: 4px solid #fff;
+	padding: 15px;
+	margin: 15px 0;
+	border-radius: 8px;
+}
+
+.feature-item {
+	font-weight: bold;
+	color: #fff;
+	font-size: 1.1rem;
+}
+
+.url {
+	font-family: 'Courier New', monospace;
+	background: rgba(255,255,255,0.2);
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: #fff;
+}
+
+.btn-custom {
+	background: rgba(255,255,255,0.2);
+	border: 2px solid rgba(255,255,255,0.3);
+	color: white;
+	padding: 12px 30px;
+	border-radius: 25px;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	margin: 10px;
+}
+
+.btn-custom:hover {
+	background: rgba(255,255,255,0.3);
+	border-color: rgba(255,255,255,0.5);
+	color: white;
+	transform: translateY(-2px);
+}
+
+.status-badge {
+	background: #28a745;
+	color: white;
+	padding: 5px 15px;
+	border-radius: 20px;
+	font-size: 0.9rem;
+	margin-left: 10px;
+}
