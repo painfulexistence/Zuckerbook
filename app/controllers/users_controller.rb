@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 
   def show
     authorize! :show, @user
-    @posts = @user.posts.order("updated_at DESC")
+    @posts = @user.posts
+			.includes(
+				comments: { user: :avatar_attachment }
+			)
+			.order(updated_at: :desc)
   end
 
   def follow
