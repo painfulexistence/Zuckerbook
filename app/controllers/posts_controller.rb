@@ -16,11 +16,17 @@ class PostsController < ApplicationController
     #     @posts = search.results
     @posts = if params[:key]
 			Post.search(params[:key], misspellings: false) # note that this returns a Searchkick::Relation object, not an ActiveRecord::Relation object
-			.includes(:comments, user: :avatar_attachment)
+			.includes(
+				user: :avatar_attachment,
+				comments: { user: :avatar_attachment }
+			)
 			.order(created_at: :desc)
 			.limit(100)
 		else
-			Post.includes(:comments, user: :avatar_attachment)
+			Post.includes(
+				user: :avatar_attachment,
+				comments: { user: :avatar_attachment }
+			)
 			.order(created_at: :desc)
 			.limit(100)
 		end

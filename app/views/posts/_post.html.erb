@@ -78,7 +78,6 @@
       </div>
     </div>
     <div class="panel-body" >
-      <% @comments = post.comments.includes(:user) %>
-      <%= render @comments || "comments/comment" %>
+      <%= render post.comments || "comments/comment" %>
     </div>
   </div>
