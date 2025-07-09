@@ -44,7 +44,7 @@ gem 'cloudinary'
 # Background jobs
 gem 'sidekiq'
 
-# Redis for ActionCable and caching
+# Redis for ActionCable, caching, and job queue
 gem 'redis', '~> 5.0'
 
 # GraphQL
@@ -58,6 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'bonsai-elasticsearch-rails'
 # gem 'elasticsearch-model', '= 0.1.9'
 # gem 'elasticsearch-rails', '= 0.1.9'
+gem "searchkick", "~> 5.5"
+gem "elasticsearch", "~> 9.0"
 
 # Development tools
 group :development, :test do

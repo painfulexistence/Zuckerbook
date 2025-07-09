@@ -15,19 +15,15 @@ module Api
 				#       # paginate(page: 2, per_page: 15)
 				#     end
 				#     @posts = search.results
-				#
-				#     # If do without sunspot:
-				#     # @posts = Post.order("updated_at DESC").paginate(page: params[:page], per_page: 10)
 				@posts = if params[:key]
-					# TODO: Elasticsearch
-					# @results = Post.search(params[:key])
-					# @posts = @results.records.includes(:user)
-					#   .order("updated_at DESC")
-					Post.includes(:comments, user: :avatar_attachment)
-						.order('created_at DESC').limit(100)
+					Post.search(params[:key], misspellings: false) # note that this returns a Searchkick::Relation object, not an ActiveRecord::Relation object
+					.includes(:comments, user: :avatar_attachment)
+					.order(created_at: :desc)
+					.limit(100)
 				else
 					Post.includes(:comments, user: :avatar_attachment)
-						.order('created_at DESC').limit(100)
+					.order(created_at: :desc)
+					.limit(100)
 				end
 				# render json: @posts
 				render json: PostSerializer.new(@posts, include: [:user]).serializable_hash
