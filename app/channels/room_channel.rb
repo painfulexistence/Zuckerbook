@@ -2,7 +2,7 @@ class RoomChannel < ApplicationCable::Channel
   # default callbacks
 
   def subscribed
-    stream_from 'room_channel'
+		stream_from 'public_room'
   end
 
   def unsubscribed

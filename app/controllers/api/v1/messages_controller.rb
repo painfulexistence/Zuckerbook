@@ -3,7 +3,10 @@ class Api::V1::MessagesController < Api::V1::ApiController
     @message = current_user.messages.new(message_params)
 		authorize! :create, @message
     if @message.save
-      ActionCable.server.broadcast 'room_channel', { content: @message.content, username: @message.user.name }
+      ActionCable.server.broadcast 'public_room', { content: @message.content, username: @message.user.name }
+			if @message.content.starts_with?("@AI")
+				LlmChatWorker.perform_async(@message.id)
+			end
 			head :ok
     else
       head :unprocessable_entity

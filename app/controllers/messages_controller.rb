@@ -4,9 +4,11 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.new(message_params)
     if @message.save
-      ActionCable.server.broadcast 'room_channel', { content: @message.content, username: @message.user.name }
-      puts "content: #{@message.content}, username: #{@message.user.name}"
-      head :ok
+      ActionCable.server.broadcast 'public_room', { content: @message.content, username: @message.user.name }
+			if @message.content.starts_with?("@AI")
+				LlmChatWorker.perform_async(@message.id)
+			end
+			head :ok
     else
       head :unprocessable_entity
     end

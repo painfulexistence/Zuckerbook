@@ -47,6 +47,9 @@ gem 'sidekiq'
 # Redis for ActionCable, caching, and job queue
 gem 'redis', '~> 5.0'
 
+# LLM
+gem "ruby_llm", "~> 1.3"
+
 # GraphQL
 gem "graphql", "~> 2.5"
 
