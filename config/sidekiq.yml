@@ -1,0 +1,4 @@
+:schedule:
+  search_reindex:
+    cron: "0 3 * * *"
+    class: "SearchReindexWorker"
