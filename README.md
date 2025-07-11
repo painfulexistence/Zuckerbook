@@ -1,19 +1,32 @@
 # Zuckerbook
-![Zuckerbook home page](.github/media/screenshot.png)
+![Zuckerbook home page](.github/media/overview.png)
 
-<!-- ### Demo -->
+### Demo
+#### Full-text search
+![Zuckerbook full-text search](.github/media/zuckerbook-first-demo.png)
+#### AI chat
+![Zuckerbook AI chat](.github/media/zuckerbook-first-ai-chat.png)
+#### You likely wont' see this screen because the app loads blazingly fast (JK)
+![Zuckerbook load screen](.github/media/zuckerbook-first-demo-thumbnail.png)
 
 ## Run the Project
 ### Prerequisites
 - Ruby 3.4
 - Rails 8.0
-- Redis Server
+- Bun
+- Redis
+- Elasticsearch
+- Ollama
 - PostgreSQL (production only)
-- Elasticsearch Cluster (production only)
 - Cloudinary Storage Space (production only)
 
 ### Setup
 ```bash
+bundle install
+bun install
+rails db:create
+rails db:migrate
+bin/dev
 ```
 
 ## Things you should know first

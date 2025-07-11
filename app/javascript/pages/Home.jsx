@@ -59,6 +59,7 @@ const Home = () => {
 							<div className="feature-item">Comment on posts</div>
 							<div className="feature-item">Like posts</div>
 							<div className="feature-item">Public/private posts</div>
+							<div className="feature-item">Search posts & comments</div>
 						</div>
 					</div>
 				</div>
@@ -68,6 +69,7 @@ const Home = () => {
 						<h4><i className="fas fa-comment-dots" /> Messages</h4>
 						<div className="feature">
 							<div className="feature-item">Instant messages</div>
+							<div className="feature-item">AI chat</div>
 						</div>
 					</div>
 
