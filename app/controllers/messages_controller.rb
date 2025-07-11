@@ -4,8 +4,9 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.messages.new(message_params)
     if @message.save
-      ActionCable.server.broadcast 'public_room', { content: @message.content, username: @message.user.name }
-			if @message.content.starts_with?("@AI")
+			user = @message.user
+      ActionCable.server.broadcast 'public_room', { content: @message.content, user: { id: user.id, name: user.name } }
+			if params[:ai_mentioned]
 				LlmChatWorker.perform_async(@message.id)
 			end
 			head :ok

@@ -12,6 +12,6 @@ class LlmChatWorker
 			response << chunk.content
 		end
 
-		ActionCable.server.broadcast 'public_room', { content: response, username: "Bot" }
+		ActionCable.server.broadcast 'public_room', { content: response, user: { id: 0, name: "Bot" } }
   end
 end
