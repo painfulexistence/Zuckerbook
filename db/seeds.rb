@@ -1,30 +1,6 @@
 time_start = Time.now
 time_current = time_start
 
-puts "Cleaning up..."
-
-ActiveRecord::Base.transaction do
-  # TODO: raise exception if any of the following fails
-  ActiveStorage::Attachment.delete_all
-  ActiveStorage::Blob.delete_all
-  PublicActivity::Activity.delete_all
-  ActsAsVotable::Vote.delete_all
-  Comment.delete_all
-  Follow.delete_all
-  Friendship.delete_all
-  User.joins(:roles).each { |user| user.roles.clear }
-  Role.delete_all
-  ActiveRecord::Base.connection.execute("DELETE FROM users_roles")
-  Post.delete_all
-  Message.delete_all
-  Notification.delete_all
-  JwtDenylist.delete_all
-  User.delete_all
-end
-
-puts "Cleaning up done in #{Time.now - time_current} seconds"
-time_current = Time.now
-
 puts "Creating users..."
 
 # Create admins
@@ -48,7 +24,7 @@ batch_size = 2000
 # Create users
 password_digest = Devise::Encryptor.digest(User, "000000")
 user_attributes = []
-100000.times do |i|
+1000000.times do |i|
   user_attributes << {
     name: Faker::Name.name,
     email: Faker::Internet.unique.email,
