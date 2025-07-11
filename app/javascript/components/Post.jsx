@@ -5,18 +5,20 @@ import { PostsAPI } from '../services/api'
 import PostForm from './PostForm'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
-import { Card, Flex, Avatar, Box, Heading, Text, Button, Badge } from "@radix-ui/themes";
-import { HeartIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
+import { Card, Flex, Avatar, Box, Heading, Text, Button, Badge } from "@radix-ui/themes"
+import { HeartIcon, ChatBubbleIcon } from "@radix-ui/react-icons"
+import { useQueryClient } from '@tanstack/react-query'
 
-const Post = ({ post, onUpdate }) => {
+const Post = ({ post }) => {
   const [showCommentForm, setShowCommentForm] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const { currentUser } = useAuth()
+	const queryClient = useQueryClient()
 
   const handleLike = async () => {
     try {
       await PostsAPI.like(post.id)
-      onUpdate() // Refresh posts
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
     } catch (error) {
       console.error('Error liking post:', error)
     }
@@ -27,7 +29,7 @@ const Post = ({ post, onUpdate }) => {
 
     try {
       await PostsAPI.delete(post.id)
-      onUpdate() // Refresh posts
+      queryClient.invalidateQueries({ queryKey: ['posts'] })
     } catch (error) {
       console.error('Error deleting post:', error)
     }
@@ -50,7 +52,6 @@ const Post = ({ post, onUpdate }) => {
         post={post}
         onSave={() => {
           setIsEditing(false)
-          onUpdate()
         }}
         onCancel={() => setIsEditing(false)}
       />
