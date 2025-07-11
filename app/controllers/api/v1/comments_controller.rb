@@ -2,6 +2,7 @@ module Api
   module V1
 		class CommentsController < Api::V1::ApiController
 			# before_action :authenticate_user!
+			before_action :set_comment, only: [:update, :destroy]
 
 			# respond_to :json
 
@@ -36,6 +37,11 @@ module Api
 			end
 
 			private
+
+			def set_comment
+				@comment = Comment.find(params[:id])
+			end
+
 			def comment_params
 				params.permit(:content)
 			end

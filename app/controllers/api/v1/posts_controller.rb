@@ -6,7 +6,7 @@ module Api
 
 			# respond_to :json
 
-      def index
+			def index
 				authorize! :index, Post
 				#     search = Post.search(include: [:user]) do
 				#       fulltext params[:key]
@@ -15,31 +15,32 @@ module Api
 				#       # paginate(page: 2, per_page: 15)
 				#     end
 				#     @posts = search.results
-				@posts = if params[:key]
-					Post.search(params[:key], misspellings: false) # note that this returns a Searchkick::Relation object, not an ActiveRecord::Relation object
-					.includes(
-						user: :avatar_attachment,
-						comments: { user: :avatar_attachment }
-					)
-					.order(created_at: :desc)
-					.page(params[:page] || 1)
+				@posts = if params[:key].present?
+					Post.search(params[:key], misspellings: false) # note that search() returns a Searchkick::Relation object, not an ActiveRecord::Relation object
+						.includes(
+							user: :avatar_attachment,
+							comments: { user: :avatar_attachment }
+						)
+						.order(created_at: :desc)
+						.page(params[:page] || 1)
+						.results
 				else
 					Post
-					.includes(
-						user: :avatar_attachment,
-						comments: { user: :avatar_attachment }
-					)
-					.order(created_at: :desc)
-					.page(params[:page] || 1)
+						.includes(
+							user: :avatar_attachment,
+							comments: { user: :avatar_attachment }
+						)
+						.order(created_at: :desc)
+						.page(params[:page] || 1)
 				end
 				# render json: @posts
-				render json: PostSerializer.new(@posts, include: [:user]).serializable_hash
-      end
+				render json: PostSerializer.new(@posts, include: [:user, :comments, "comments.user"]).serializable_hash
+			end
 
       def show
 				authorize! :show, @post
 				# render json: @post
-        render json: PostSerializer.new(@post, include: [:user]).serializable_hash
+        render json: PostSerializer.new(@post, include: [:user, :comments, "comments.user" ]).serializable_hash
       end
 
       def create

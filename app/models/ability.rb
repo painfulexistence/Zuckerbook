@@ -17,7 +17,7 @@ class Ability
         #puts "user_checked"
         can [:index, :show, :new, :create, :edit, :update, :destroy, :like], Post, user_id: user.id
         can [:index, :show, :like], Post
-        can [:index, :show, :create], Comment
+        can [:index, :show, :create, :update, :destroy], Comment
         can [:log], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship, user_id: user.id
@@ -25,7 +25,7 @@ class Ability
       elsif user.has_role?(:admin, user)
         #puts "admin_checked"
         can [:index, :show, :new, :create, :edit, :update, :destroy, :like], Post
-        can [:index, :show, :create], Comment
+        can [:index, :show, :create, :update, :destroy], Comment
         can [:log, :index, :show], PublicActivity::Activity
         can [:show, :follow, :unfollow, :block], User
         can [:create, :destroy], Friendship
@@ -33,7 +33,7 @@ class Ability
       elif user.has_role?(:Zucker, user)
         #puts "Zucker_checked"
         can [:index, :show, :new, :create, :edit, :update, :destroy, :like], Post
-        can [:read, :create], Comment
+        can [:index, :show, :create, :update, :destroy], Comment
         can [:log, :index, :show], PublicActivity::Activity
         can [:index, :show, :follow, :unfollow, :block, :warn, :ban], User
         can [:index, :create, :destroy], Friendship

@@ -14,22 +14,22 @@ class PostsController < ApplicationController
     #       # paginate(page: 2, per_page: 15)
     #     end
     #     @posts = search.results
-    @posts = if params[:key]
+    @posts = if params[:key].present?
 			Post.search(params[:key], misspellings: false) # note that this returns a Searchkick::Relation object, not an ActiveRecord::Relation object
-			.includes(
-				user: :avatar_attachment,
-				comments: { user: :avatar_attachment }
-			)
-			.order(created_at: :desc)
-			.page(params[:page] || 1)
+				.includes(
+					user: :avatar_attachment,
+					comments: { user: :avatar_attachment }
+				)
+				.order(created_at: :desc)
+				.page(params[:page] || 1)
 		else
 			Post
-			.includes(
-				user: :avatar_attachment,
-				comments: { user: :avatar_attachment }
-			)
-			.order(created_at: :desc)
-			.page(params[:page] || 1)
+				.includes(
+					user: :avatar_attachment,
+					comments: { user: :avatar_attachment }
+				)
+				.order(created_at: :desc)
+				.page(params[:page] || 1)
 		end
 
     respond_to do |format|
