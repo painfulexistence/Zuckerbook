@@ -91,6 +91,10 @@ export const AuthAPI = {
 	signUp: async (data) => {
 		const response = await api.post("/auth/sign_up", data)
 		return response.data.data
+	},
+	signOut: async () => {
+		const response = await api.delete("/auth/sign_out")
+		return response.data.message
 	}
 }
 

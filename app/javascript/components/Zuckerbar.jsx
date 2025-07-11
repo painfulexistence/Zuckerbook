@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { Box, Text, Button, Flex, TextField, Badge } from '@radix-ui/themes'
 import { MagnifyingGlassIcon, GearIcon, ExitIcon, PersonIcon, EnterIcon } from '@radix-ui/react-icons'
+import { AuthAPI } from '../services/api'
 
 function Zuckerbar() {
   const [searchKey, setSearchKey] = useState("")
@@ -16,8 +17,9 @@ function Zuckerbar() {
     navigate(`/z/posts?key=${encodeURIComponent(searchKey)}`)
   }
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     if (confirm("Are you sure to leave?")) {
+			await AuthAPI.signOut()
       logout()
       navigate('/z/sign_in')
     }
