@@ -1,11 +1,15 @@
-# Zuckerbook
+<div align="center">
+<h1>👁️ Zuckerbook</h1>
+<h6>A modern social media web app built with Rails and React</h6>
+</div>
+
 ![Zuckerbook home page](.github/media/overview.png)
 
-### Demo
+## Demo
 #### Full-text search
 ![Zuckerbook full-text search](.github/media/zuckerbook-first-demo.png)
 #### AI chat
-![Zuckerbook AI chat](.github/media/zuckerbook-first-ai-chat.png)
+![Zuckerbook AI chat](.github/media/zuckerbook-first-demo-ai-chat.png)
 #### You likely wont' see this screen because the app loads blazingly fast (JK)
 ![Zuckerbook load screen](.github/media/zuckerbook-first-demo-thumbnail.png)
 
