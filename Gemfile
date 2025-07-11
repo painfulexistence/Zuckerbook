@@ -41,6 +41,9 @@ gem 'public_activity'
 gem "image_processing", "~> 1.2"
 gem 'cloudinary'
 
+# Pagination
+gem "kaminari", "~> 1.2"
+
 # Background jobs
 gem 'sidekiq'
 
@@ -55,7 +58,6 @@ gem "graphql", "~> 2.5"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-# gem 'will_paginate', '~> 3.1.0'
 
 # Search features
 # gem 'bonsai-elasticsearch-rails'

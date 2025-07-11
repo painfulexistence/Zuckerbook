@@ -21,14 +21,15 @@ class PostsController < ApplicationController
 				comments: { user: :avatar_attachment }
 			)
 			.order(created_at: :desc)
-			.limit(100)
+			.page(params[:page] || 1)
 		else
-			Post.includes(
+			Post
+			.includes(
 				user: :avatar_attachment,
 				comments: { user: :avatar_attachment }
 			)
 			.order(created_at: :desc)
-			.limit(100)
+			.page(params[:page] || 1)
 		end
 
     respond_to do |format|
@@ -96,7 +97,10 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(
+      user: :avatar_attachment,
+      comments: { user: :avatar_attachment }
+    ).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

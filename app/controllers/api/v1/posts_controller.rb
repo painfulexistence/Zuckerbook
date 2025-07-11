@@ -22,14 +22,15 @@ module Api
 						comments: { user: :avatar_attachment }
 					)
 					.order(created_at: :desc)
-					.limit(100)
+					.page(params[:page] || 1)
 				else
-					Post.includes(
+					Post
+					.includes(
 						user: :avatar_attachment,
 						comments: { user: :avatar_attachment }
 					)
 					.order(created_at: :desc)
-					.limit(100)
+					.page(params[:page] || 1)
 				end
 				# render json: @posts
 				render json: PostSerializer.new(@posts, include: [:user]).serializable_hash
