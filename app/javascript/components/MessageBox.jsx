@@ -16,6 +16,7 @@ import {
   ChatBubbleIcon
 } from "@radix-ui/react-icons"
 import { useMessaging } from '../contexts/MessagingContext'
+import MessageDebugPanel from './MessageDebugPanel'
 
 const MessageBox = () => {
 	const { messages, sendMessage } = useMessaging()
@@ -41,6 +42,8 @@ const MessageBox = () => {
 
   return (
     <Box className="fixed bottom-0 right-0 z-50" style={{ right: 0, width: "400px" }}>
+			{ process.env.NODE_ENV === "development" && <MessageDebugPanel /> }
+
       {!isExpanded && (
         <Card
           className="transition-all duration-200 cursor-pointer shadow-lg zucker-panel"
@@ -97,7 +100,7 @@ const MessageBox = () => {
                         : 'bg-gray-100 text-gray-900'
                     }`}
                     style={{
-											width: "200px",
+											width: "250px",
                       borderRadius: msg.sender === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px'
                     }}
                   >
