@@ -20,11 +20,11 @@ export const MessagingProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (cable) {
-			const sub = {
+			const params = {
 				channel: "RoomChannel",
 				// client_id: "" // TODO: generate and send client ID
 			}
-			cable.subscriptions.create(sub, {
+			const sub = cable.subscriptions.create(params, {
 				connected() {
 					console.log("connected")
 				},
@@ -48,7 +48,7 @@ export const MessagingProvider = ({ children }) => {
 				}
 			})
 			return () => {
-				cable.subscriptions.unsubscribe("RoomChannel")
+				sub.unsubscribe("RoomChannel")
 				setMessages([])
 			}
 		}
