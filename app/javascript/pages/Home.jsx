@@ -81,7 +81,7 @@ const Home = () => {
 				</div>
 
 				<div className="alert alert-warning mt-4" style={{ background: "rgba(255,193,7,0.2)", border: "1px solid rgba(255,193,7,0.3)", color: "#fff" }}>
-					<i className="fas fa-exclamation-triangle" /> Sorry, no public post for now! Maybe you should <a href="/sign_up" style={{ color: "#fff", textDecoration: "underline" }}><strong>sign up</strong></a>.
+					<i className="fas fa-exclamation-triangle" /> Sorry, no public post for now! Maybe you should <Link to="/z/sign_up" style={{ color: "#fff", textDecoration: "underline" }}><strong>sign up</strong></Link>.
 				</div>
 			</div>
 

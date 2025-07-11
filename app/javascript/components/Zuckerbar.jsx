@@ -1,93 +1,104 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import { Box, Text, Button, Flex, TextField, Badge } from '@radix-ui/themes'
+import { MagnifyingGlassIcon, GearIcon, ExitIcon, PersonIcon, EnterIcon } from '@radix-ui/react-icons'
 
 function Zuckerbar() {
-  const [searchKey, setSearchKey] = useState('')
+  const [searchKey, setSearchKey] = useState("")
+  const navigate = useNavigate()
+  const { currentUser, isAuthenticated, logout } = useAuth()
 
-  const isUserSignedIn = false
-  const isUserBanned = false
+  const isUserBanned = currentUser?.banned || false
 
   const handleSearch = (e) => {
     e.preventDefault()
-    window.location.href = `/z/posts?key=${encodeURIComponent(searchKey)}`
+    navigate(`/z/posts?key=${encodeURIComponent(searchKey)}`)
   }
 
   const handleSignOut = () => {
     if (confirm("Are you sure to leave?")) {
-      window.location.href = '/users/sign_out'
+      logout()
+      navigate('/z/sign_in')
     }
   }
 
   return (
-    <>
-      <a className="navbar-brand" href={isUserSignedIn ? '/z/posts' : '/'} id="Zuckerbrand">
-        <strong>Zuckerbook</strong>
-      </a>
+    <Box
+			className="bg-dark border-b border-gray-200"
+      style={{
+        borderBottom: '1px solid var(--gray-6)',
+        padding: 'var(--space-3)'
+      }}
+    >
+      <Flex align="center" justify="between" gap="4">
+				<Flex gap="4">
+					<Link to="/z" style={{ textDecoration: 'none' }}>
+						<Text size="6" weight="bold" color="white">Zuckerbook</Text>
+					</Link>
 
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon" />
-      </button>
+					<Box style={{ flex: 1, maxWidth: '400px' }}>
+						<form onSubmit={handleSearch}>
+							<Flex gap="2">
+								<TextField.Root
+									type="text"
+									placeholder="Search posts..."
+									required
+									value={searchKey}
+									onChange={(e) => setSearchKey(e.target.value)}
+								/>
+								<Button type="submit" size="2" variant="soft">
+									<MagnifyingGlassIcon width="14" height="14" />
+								</Button>
+							</Flex>
+						</form>
+					</Box>
+				</Flex>
 
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <div className="navbar-nav me-auto" id="Zucker-search">
-          <form onSubmit={handleSearch} className="d-flex">
-            <input
-              type="text"
-              placeholder="Any Keywords"
-              className="form-control me-2"
-              required
-              value={searchKey}
-              onChange={(e) => setSearchKey(e.target.value)}
-            />
-            <button type="submit" className="btn btn-outline-light">
-              Search
-            </button>
-          </form>
-        </div>
+        {isUserBanned && (
+          <Badge color="red" variant="solid">
+            You're Zucked
+          </Badge>
+        )}
 
-        <div className="navbar-nav" id="Zucker-menu">
-          <div className="btn-group" role="group">
-            {isUserSignedIn ? (
-              <>
-                {isUserBanned ? (
-                  <span className="badge bg-danger">You've been banned by Zucker</span>
-                ) : (
-                  <a href="/z/posts/new" className="btn btn-outline-light">
-                    <i className="fa fa-pencil" /> Posts
-                  </a>
-                )}
-                <a href="/account" className="btn btn-outline-light">
-                  <i className="fa fa-cog" /> Account
-                </a>
-                <button
-                  onClick={handleSignOut}
-                  className="btn btn-outline-light"
-                  type="button"
-                >
-                  <i className="fa fa-sign-out" /> Sign Out
-                </button>
-              </>
-            ) : (
-              <>
-                <a href="/sign_up" className="btn btn-outline-light">
-                  <i className="fa fa-user-plus" /> Sign Up
-                </a>
-                <a href="/users/sign_in" className="btn btn-outline-light">
-                  <i className="fa fa-sign-in" /> Sign In
-                </a>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </>
+        <Flex gap="2">
+          {isAuthenticated ? (
+            <>
+              {/* <Button asChild variant="soft" size="2">
+                <Link to="/z/my_account">
+                  <GearIcon width="14" height="14" />
+                  Account
+                </Link>
+              </Button> */}
+              <Button
+                variant="soft"
+                color="red"
+                size="2"
+                onClick={handleSignOut}
+              >
+                <ExitIcon width="14" height="14" />
+                Sign Out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button asChild variant="soft" size="2">
+                <Link to="/z/sign_up">
+                  <PersonIcon width="14" height="14" />
+                  Sign Up
+                </Link>
+              </Button>
+              <Button asChild variant="soft" size="2">
+                <Link to="/z/sign_in">
+                  <EnterIcon width="14" height="14" />
+                  Sign In
+                </Link>
+              </Button>
+            </>
+          )}
+        </Flex>
+      </Flex>
+    </Box>
   )
 }
 

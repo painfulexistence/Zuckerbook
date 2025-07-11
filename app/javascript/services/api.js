@@ -32,7 +32,7 @@ api.interceptors.response.use(
       localStorage.removeItem("accessToken")
       localStorage.removeItem("currentUser")
     }
-    return Promise.reject()
+    return Promise.reject(error)
   }
 )
 

@@ -1,62 +1,28 @@
 import React, { useState } from 'react'
 import Zuckerbar from '../Zuckerbar'
-import MessageBoard from '../MessageBoard'
+import { Theme, ThemePanel, Container, Box } from "@radix-ui/themes";
 
 function AppLayout({ children }) {
-  const [isMessageOpen, setIsMessageOpen] = useState(false)
+	const [isThemePanelOpen, setIsThemePanelOpen] = useState(false)
 
-  const openMessageBoard = () => {
-    setIsMessageOpen(true)
-    document.body.style.padding = "0 0 250px 0"
-  }
-
-  const closeMessageBoard = () => {
-    setIsMessageOpen(false)
-    document.body.style.padding = "0 0 50px 0"
-  }
+	const toggleThemePanel = () => {
+		setIsThemePanelOpen(!isThemePanelOpen)
+	}
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="Zuckerbar">
-        <div className="container">
-          <Zuckerbar />
-        </div>
-      </nav>
+    <Theme appearance="dark" accentColor="crimson" grayColor="sand" radius="large" scaling="100%">
+      <Box className="fixed top-0 w-full z-50" id="Zuckerbar" style={{ height: "50px" }}>
+        <Zuckerbar />
+      </Box>
 
-      <div className="container" id="main">
-        {children}
-      </div>
+      { isThemePanelOpen && <ThemePanel /> }
 
-      <nav className="navbar navbar-dark bg-dark fixed-bottom">
-        <div className="container">
-          <div className="text-center w-100">
-                        {!isMessageOpen && (
-              <button
-                id="message-open"
-                onClick={openMessageBoard}
-                className="btn btn-link"
-                type="button"
-              >
-                <i className="fa fa-chevron-up" />
-              </button>
-            )}
-            {isMessageOpen && (
-              <button
-                id="message-close"
-                onClick={closeMessageBoard}
-                className="btn btn-link"
-                type="button"
-              >
-                <i className="fa fa-chevron-down" />
-              </button>
-            )}
-          </div>
-          <div className="text-center w-100">
-            <MessageBoard isOpen={isMessageOpen} />
-          </div>
-        </div>
-      </nav>
-    </div>
+      <Container className="zucker-background" minHeight="100vh" id="main">
+				<Box style={{ paddingTop: "50px" }}>
+					{ children }
+				</Box>
+      </Container>
+    </Theme>
   )
 }
 

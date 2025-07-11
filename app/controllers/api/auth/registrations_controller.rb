@@ -10,11 +10,13 @@ module Api
             sign_in(user) # sign in automatically after registration
             render json: {
               status: { code: 200, message: 'Signed up successfully.' },
+							# TODO: use UserSerializer
               data: {
                 user: {
                   id: user.id,
                   email: user.email,
                   name: user.name,
+                  avatar_url: user.avatar.attached? ? Rails.application.routes.url_helpers.rails_blob_url(user.avatar) : ActionController::Base.helpers.asset_path('eye.jpg'),
                   sign_in_count: user.sign_in_count,
                   current_sign_in_at: user.current_sign_in_at,
                   last_sign_in_at: user.last_sign_in_at
