@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 				)
 				.order(created_at: :desc)
 				.page(params[:page] || 1)
+				.per_page(Kaminari.config.default_per_page)
 		else
 			Post
 				.includes(

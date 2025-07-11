@@ -23,6 +23,7 @@ module Api
 						)
 						.order(created_at: :desc)
 						.page(params[:page] || 1)
+						.per_page(Kaminari.config.default_per_page)
 						.results
 				else
 					Post
