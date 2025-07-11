@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { CommentsAPI } from '../services/api'
 import { Box, Flex, Avatar, Text, Button } from "@radix-ui/themes"
@@ -57,9 +58,11 @@ const Comment = ({ comment }) => {
 
         <Box style={{ flex: 1 }}>
           <Flex gap="2" align="center" mb="1">
-            <Text size="2" weight="medium" color="gray">
-              {comment.user?.name || 'Unknown User'}
-            </Text>
+						<Link to={`/z/users/${comment.user?.id}`}>
+							<Text size="2" weight="medium" color="gray">
+								{comment.user?.name || 'Unknown User'}
+							</Text>
+						</Link>
             <Text size="1" color="gray">
               {formatDate(comment.created_at)}
             </Text>

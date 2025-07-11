@@ -66,12 +66,12 @@ function Zuckerbar() {
         <Flex gap="2">
           {isAuthenticated ? (
             <>
-              {/* <Button asChild variant="soft" size="2">
+              <Button asChild variant="soft" size="2">
                 <Link to="/z/my_account">
                   <GearIcon width="14" height="14" />
                   Account
                 </Link>
-              </Button> */}
+              </Button>
               <Button
                 variant="soft"
                 color="red"

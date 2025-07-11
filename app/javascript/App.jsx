@@ -7,8 +7,9 @@ import Home from './pages/Home'
 import Zuckerbook from './pages/Zuckerbook'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import Account from './pages/Account'
-import Post from './pages/PostWatch'
+import MyAccount from './pages/MyAccount'
+import PostWatch from './pages/PostWatch'
+import UserProfile from './pages/UserProfile'
 
 function App() {
 	// const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -23,8 +24,9 @@ function App() {
 						<Route path="/z" element={<ProtectedRoute />}>
 							<Route path="/z" element={<Zuckerbook />} />
 							<Route path="/z/posts" element={<Zuckerbook />} />
-							<Route path="/z/posts/:id" element={<Post />} />
-							<Route path="/z/my_account" element={<Account />} />
+							<Route path="/z/posts/:id" element={<Zuckerbook />} />
+							<Route path="/z/my_account" element={<MyAccount />} />
+							<Route path="/z/users/:id" element={<Zuckerbook />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>

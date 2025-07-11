@@ -72,15 +72,15 @@ const Post = ({ post }) => {
 						/>
             &nbsp;&nbsp;
           </div>
-          <Box className="navbar-left" id="post-info">
+          <Flex className="navbar-left" gap="4" align="end" pb="1" id="post-info">
             <Link to={`/z/users/${post.user?.id}`}>
-							<Heading size="6" as="h2" color="green" className="btn" id="post-name">{post.user?.name || 'Unknown User'}</Heading>
+							<Text size="6" color="gray" weight="bold" id="post-name">{post.user?.name || 'Unknown User'}</Text>
             </Link>
-						<Text size="1" color="gray" mb="2" id="post-time">
-							<i className={`fa ${post.public ? 'fa-globe' : 'fa-user-circle-o'}`} />&nbsp;
+						<Text size="1" color="gray"  mb="1" id="post-time">
+							<i className={`fa ${post.public ? 'fa-globe' : 'fa-user-circle'}`} />&nbsp;
 							Published at {formatDate(post.created_at)}
 						</Text>
-          </Box>
+          </Flex>
           {currentUser?.id === post.user?.id && (
             <div className="navbar-right" id="post-options">
               <div className="btn-group">
