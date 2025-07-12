@@ -6,6 +6,9 @@
 ![Zuckerbook home page](.github/media/overview.png)
 
 ## Demo
+https://www.youtube.com/watch?v=iXLtdNPihE4
+
+## Screenshots
 #### Full-text search
 ![Zuckerbook full-text search](.github/media/zuckerbook-first-demo.png)
 #### AI chat
