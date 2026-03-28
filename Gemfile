@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
 end
 
 # Rails framework
-gem 'rails', '~> 8.0.2'
+gem 'rails', '~> 8.0.4'
 
 # Web server
 gem 'puma', '~> 6.6'
@@ -28,7 +28,7 @@ end
 
 # Authentication & Authorization
 gem 'devise'
-gem "devise-jwt", "~> 0.12.1"
+gem "devise-jwt", "~> 0.13.0"
 gem 'rolify'
 gem 'cancancan', '~> 3.0'
 gem 'jsonapi-serializer'
@@ -64,7 +64,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # gem 'elasticsearch-model', '= 0.1.9'
 # gem 'elasticsearch-rails', '= 0.1.9'
 gem "searchkick", "~> 5.5"
-gem "elasticsearch", "~> 9.0"
+gem "elasticsearch", "~> 9.3"
 
 # Development tools
 group :development, :test do
